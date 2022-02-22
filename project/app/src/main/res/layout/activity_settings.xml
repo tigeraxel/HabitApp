@@ -6,4 +6,129 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
+    <TextView
+        android:id="@+id/settingsUsernameText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/rowdies"
+        android:text="LightMode - DarkMode:"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnChangeUserInfo" />
+
+    <TextView
+        android:id="@+id/settingsTextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/rowdies_bold"
+        android:text="Settings"
+        android:textColor="@color/HabitColor"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settingsUsernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/rowdies"
+        android:text="Change Username:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextTitle" />
+
+    <TextView
+        android:id="@+id/settingsPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/rowdies"
+        android:text="Change Password:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsUsernameInput" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/settingsUsernameInput"
+        android:layout_width="348dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/settingsUsernameText"
+        app:layout_constraintTop_toBottomOf="@+id/settingsUsernameText">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Username1234" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/settingsPasswordInput"
+        android:layout_width="345dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/settingsPasswordText"
+        app:layout_constraintTop_toBottomOf="@+id/settingsPasswordText">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signInRepeatPasswordInput"
+        android:layout_width="345dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/settingsPasswordText"
+        app:layout_constraintTop_toBottomOf="@+id/settingsPasswordInput">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New Password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnChangeUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rowdies_bold"
+        android:text="Change"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInRepeatPasswordInput" />
+
+    <Switch
+        android:id="@+id/switchColorMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-condensed"
+        android:showText="true"
+        android:textOff="DarkMode"
+        android:textOn="LightMode"
+        app:layout_constraintEnd_toEndOf="@+id/settingsUsernameText2"
+        app:layout_constraintStart_toStartOf="@+id/settingsUsernameText2"
+        app:layout_constraintTop_toBottomOf="@+id/settingsUsernameText2" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

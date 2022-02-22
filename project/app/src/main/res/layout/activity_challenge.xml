@@ -6,4 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".ChallengeActivity">
 
+    <Button
+        android:id="@+id/btnLogin2"
+        android:layout_width="228dp"
+        android:layout_height="77dp"
+        android:text="Search"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFriends" />
+
+    <TextView
+        android:id="@+id/challengeUsernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/rowdies"
+        android:text="Username:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/challengeTextTitle"/>
+
+    <TextView
+        android:id="@+id/challengeUsernameText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rowdies"
+        android:layout_marginStart="30dp"
+        android:text="Which Habit"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin2" />
+
+    <TextView
+        android:id="@+id/challengeTextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/rowdies_bold"
+        android:text="Challenge A Friend"
+        android:textColor="@color/HabitColor"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchBarFriends"
+        android:layout_width="348dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/challengeUsernameText"
+        app:layout_constraintTop_toBottomOf="@+id/challengeUsernameText">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Friend Username" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

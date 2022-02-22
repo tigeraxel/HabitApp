@@ -7,7 +7,7 @@
     tools:context=".SettingsActivity">
 
     <TextView
-        android:id="@+id/settingsUsernameText2"
+        android:id="@+id/settingsLightModesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
@@ -117,18 +117,16 @@
         app:layout_constraintTop_toBottomOf="@+id/signInRepeatPasswordInput" />
 
     <Switch
-        android:id="@+id/switchColorMode"
+        android:id="@+id/switchLightModes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="15dp"
-        android:fontFamily="sans-serif-condensed"
+        android:minHeight="50dp"
         android:showText="true"
-        android:textOff="DarkMode"
-        android:textOn="LightMode"
-        app:layout_constraintEnd_toEndOf="@+id/settingsUsernameText2"
-        app:layout_constraintStart_toStartOf="@+id/settingsUsernameText2"
-        app:layout_constraintTop_toBottomOf="@+id/settingsUsernameText2" />
+        android:textOff="Dark"
+        android:textOn="Light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsLightModesText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

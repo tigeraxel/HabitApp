@@ -7,7 +7,7 @@
     tools:context=".ChallengeActivity">
 
     <Button
-        android:id="@+id/btnLogin2"
+        android:id="@+id/btnSearch"
         android:layout_width="228dp"
         android:layout_height="77dp"
         android:text="Search"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@id/challengeTextTitle"/>
 
     <TextView
-        android:id="@+id/challengeUsernameText2"
+        android:id="@+id/challengeQuestionHabitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/rowdies"
@@ -36,7 +36,7 @@
         android:text="Which Habit"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
     <TextView
         android:id="@+id/challengeTextTitle"

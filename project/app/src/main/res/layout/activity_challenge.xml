@@ -65,4 +65,11 @@
                 android:hint="Friend Username" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/challengeDropDownMenu"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challengeQuestionHabitText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

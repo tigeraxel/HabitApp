@@ -17,20 +17,25 @@ class MainActivity : AppCompatActivity() {
         val btnCalenderActivity = findViewById<Button>(R.id.btnCalendarActivity)
         val btnSettingsActivity = findViewById<ImageButton>(R.id.btnSettingsActivity)
 
-
+        //Starts NewHabitActivity when clicked
         btnCreateHabitActivity.setOnClickListener {
             val intent = Intent(this, NewHabitActivity::class.java)
             startActivity(intent)
         }
 
+        //Starts ChallengeActivity when clicked
         btnChallengeActivity.setOnClickListener {
             val intent = Intent(this, ChallengeActivity::class.java)
             startActivity(intent)
         }
+
+        //Starts CalendarActivity when clicked
         btnCalenderActivity.setOnClickListener {
             val intent = Intent(this, CalenderActivity::class.java)
             startActivity(intent)
         }
+
+        //Starts SettingsActivity when clicked
         btnSettingsActivity.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)

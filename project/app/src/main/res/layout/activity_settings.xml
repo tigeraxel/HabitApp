@@ -36,8 +36,8 @@
         android:id="@+id/settingsUsernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/rowdies"
         android:text="Change Username:"
         android:textSize="25dp"
@@ -48,8 +48,8 @@
         android:id="@+id/settingsPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/rowdies"
         android:text="Change Password:"
         android:textSize="25dp"
@@ -127,6 +127,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsLightModesText" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchLightModes" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

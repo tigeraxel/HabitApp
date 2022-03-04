@@ -13,8 +13,7 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_new_habit_textview_text"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/fragment_habit_name_edittext"
@@ -33,6 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_habit_name_edittext"/>
 
     <!-- todo: A 7 day calendar thing... -->
+
     <Button
         android:id="@+id/placeholder_button_7_day"
         android:layout_width="match_parent"
@@ -48,10 +48,12 @@
         app:layout_constraintTop_toBottomOf="@id/placeholder_button_7_day"/>
 
     <!-- todo: Time picker thing... -->
-    <Button
-        android:id="@+id/placeholder_button_picker"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_time_picker_container"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
+        android:name="com.example.sestudentjuhabitapp.TimePickerFragment"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_time_textview"/>
 
     <TextView
@@ -60,10 +62,10 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_notification_setting_textview_text"
-        app:layout_constraintTop_toBottomOf="@id/placeholder_button_picker"/>
-
+        app:layout_constraintTop_toBottomOf="@id/fragment_time_picker_container"/>
 
     <Switch
+        android:id="@+id/fragment_switch"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:showText="true"

@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
+import androidx.appcompat.widget.SwitchCompat
 
 /*
-To use the fragment, call the class method: newInstance()
+Fragment used to create and edit an habit.
+
+To use the fragment outside of xml implementations, call the class method: newInstance()
 
 val a = EditHabitFragment() This would work, but not compatible with runtime config changes.
 
@@ -24,12 +28,12 @@ fun newInstance(data : data type) = EditHabitFragment().apply{
 
 class EditHabitFragment : Fragment() {
 
-    // Create vars here to store any desired data on creation. startValue example:
+    // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //startValue = requireArguments().getInt("key") // Example
+        // startValue = requireArguments().getInt("key") // Example
     }
 
     override fun onCreateView( // Returns a root view object.
@@ -42,9 +46,12 @@ class EditHabitFragment : Fragment() {
 
         //val editText = view.findViewById<EditText>(R.id.exampleId) // Example
         // editText.text // Example
+
+        val notificationsSwitchView = view.findViewById<Switch>(R.id.fragment_switch)
+        notificationsSwitchView.setOnClickListener{ /* Todo: toggle notifications */}
     }
 
-    companion object {
+    companion object { // Needed?
         fun newInstance() = EditHabitFragment()
     }
 }

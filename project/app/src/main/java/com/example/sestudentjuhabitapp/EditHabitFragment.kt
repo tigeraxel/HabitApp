@@ -50,8 +50,4 @@ class EditHabitFragment : Fragment() {
         val notificationsSwitchView = view.findViewById<Switch>(R.id.fragment_switch)
         notificationsSwitchView.setOnClickListener{ /* Todo: toggle notifications */}
     }
-
-    companion object { // Needed?
-        fun newInstance() = EditHabitFragment()
-    }
 }

@@ -19,10 +19,11 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
 
         // Set the time to current time:
         val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendar.get(Calendar.MINUTE)
 
-        TimePickerDialog(activity, this, hour, minute, DateFormat.is24HourFormat(activity))
+        // Creates a new TimePicker, which starts at the current time. Not supposed to be AM / PM but todo: currently is..
+        TimePickerDialog(activity, this, currentHour, currentMinute, DateFormat.is24HourFormat(activity))
     }
 
     override fun onCreateView(
@@ -30,10 +31,7 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_time_picker, container, false)
 
-    companion object { // Needed?
-        fun newInstance() = TimePickerFragment()
-    }
-    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) { // Save the specified time to the relevant habit.
         TODO("Not yet implemented")
     }
 }

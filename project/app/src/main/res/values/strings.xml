@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Se.student.ju.HabitApp</string>
+
+    <!-- Home Screen -->
+    <string name="home_top_textview_text">NewHabit</string>
+    <string name="home_create_habit_button_text">Create New Habit</string>
+    <string name="home_challenge_friend_button_text">Challenge a Friend</string>
+    <string name="home_habit_calendar_button_text">Habit-Calendar</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_change_username_textview_text">Change Username:</string>
+    <string name="settings_change_username_edittext_hint_text">New Username</string>
+    <string name="settings_change_password_textview_text">Change Password:</string>
+    <string name="settings_change_password_edittext_hint_text">New Password</string>
+    <string name="settings_repeat_password_edittext_hint_text">Repeat Username</string>
+    <string name="settings_change_button_text">Change!</string>
+    <string name="settings_light_mode_switch_text">Light</string>
+    <string name="settings_dark_mode_switch_text">Dark</string>
+
+    <!-- Create Habit -->
+    <string name="create_top_textview_text">Create Habit</string>
+    <string name="create_create_habit_button_text">Create Habit!</string>
+
+    <!-- Change Habit -->
+    <string name="change_top_textview_text">Change Habit</string>
+    <string name="change_change_habit_button_text">Change!</string>
+    <string name="change_delete_habit_button_text">Delete Habit!</string>
+
+    <!-- Fragment reused in Create and Change -->
+    <string name="fragment_new_habit_textview_text">Name of Habit:</string>
+    <string name="fragment_new_habit_edittext_hint_text">Habit name</string>
+    <string name="fragment_set_period_textview_text">How Often?</string>
+    <string name="fragment_set_time_textview_text">What time?</string>
+    <string name="fragment_notification_setting_textview_text">Notifications?</string>
+    <string name="fragment_switch_on_text">On</string>
+    <string name="fragment_switch_off_text">Off</string>
 </resources>

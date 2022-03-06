@@ -2,9 +2,9 @@
     <string name="app_name">Se.student.ju.HabitApp</string>
 
     <!-- Error handling messages -->
-    <string name="yes">yes</string>
+    <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="input_string_error_title">Input error!</string>
     <string name="input_string_error_description">The text field must not be empty or exceed 50 characters.</string>
 
@@ -32,7 +32,6 @@
     <string name="change_delete_habit_popup_title_text">Delete?</string>
     <string name="change_delete_habit_popup_detail_text">Are you sure you want to delete?</string>
 
-
     <!-- Fragment reused in Create and Change -->
     <string name="fragment_new_habit_textview_text">Name of Habit:</string>
     <string name="fragment_new_habit_edittext_hint_text">Habit name</string>
@@ -41,6 +40,11 @@
     <string name="fragment_notification_setting_textview_text">Notifications?</string>
     <string name="fragment_switch_on_text">On</string>
     <string name="fragment_switch_off_text">Off</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_monday_text">M</string>
+    <string name="fragment_tuesday_text">T</string>
+    <string name="fragment_wednesday_text">W</string>
+    <string name="fragment_thursday_text">T</string>
+    <string name="fragment_friday_text">F</string>
+    <string name="fragment_saturday_text">S</string>
+    <string name="fragment_sunday_text">S</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Switch
 import androidx.appcompat.widget.SwitchCompat
 
@@ -34,6 +35,23 @@ class EditHabitFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // startValue = requireArguments().getInt("key") // Example
+
+        val selectMondayBtn = view?.findViewById<Button>(R.id.fragment_monday_button)
+        val selectTuesdayBtn = view?.findViewById<Button>(R.id.fragment_tuesday_button)
+        val selectWednesdayBtn = view?.findViewById<Button>(R.id.fragment_wednesday_button)
+        val selectThursdayBtn = view?.findViewById<Button>(R.id.fragment_thursday_button)
+        val selectFridayBtn = view?.findViewById<Button>(R.id.fragment_friday_button)
+        val selectSaturdayBtn = view?.findViewById<Button>(R.id.fragment_saturday_button)
+        val selectSundayBtn = view?.findViewById<Button>(R.id.fragment_sunday_button)
+
+        selectMondayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectTuesdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectWednesdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectThursdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectFridayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectSaturdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+        selectSundayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
+
     }
 
     override fun onCreateView( // Returns a root view object.

@@ -22,12 +22,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/createUsernameText"
+        android:id="@+id/createEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/rowdies"
-        android:text="Username:"
+        android:text="Email:"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/createUsernameEditText" />
+        app:layout_constraintTop_toTopOf="@+id/createEmailEditText" />
 
     <Button
         android:id="@+id/btnCreate"
@@ -71,11 +71,11 @@
 
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/createUsernameEditText"
+        android:id="@+id/createEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        app:layout_constraintTop_toBottomOf="@+id/createUsernameText"
+        android:hint="Email"
+        app:layout_constraintTop_toBottomOf="@+id/createEmailText"
         tools:layout_editor_absoluteX="16dp" />
 
     <com.google.android.material.textfield.TextInputEditText

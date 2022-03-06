@@ -21,7 +21,7 @@ class createAccountActivity : AppCompatActivity() {
 
         val btnCreate = findViewById<Button>(R.id.btnCreate)
         val btnLoginToAccount = findViewById<Button>(R.id.btnLoginToAccount)
-        val createEmail = findViewById<EditText>(R.id.createUsernameEditText)
+        val createEmail = findViewById<EditText>(R.id.createEmailEditText)
         val createPassword = findViewById<EditText>(R.id.createPassswordEditText)
 
         btnLoginToAccount.setOnClickListener {

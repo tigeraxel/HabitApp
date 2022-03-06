@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/loginUsernameText"
+        android:id="@+id/loginEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/rowdies"
-        android:text="Username:"
+        android:text="Email:"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTextTitle" />
@@ -41,23 +41,23 @@
         android:text="Password:"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsernameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailInput" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginUsernameInput"
+        android:id="@+id/loginEmailInput"
         android:layout_width="348dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/loginUsernameText"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsernameText">
+        app:layout_constraintStart_toStartOf="@+id/loginEmailText"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailText">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginUsernameEditText"
+            android:id="@+id/loginEmailEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Username1234" />
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

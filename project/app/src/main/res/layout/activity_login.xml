@@ -20,16 +20,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-    android:id="@+id/loginUsernameText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="30dp"
-    android:layout_marginTop="30dp"
-    android:fontFamily="@font/rowdies"
-    android:text="Username:"
-    android:textSize="25dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/loginTextTitle" />
+        android:id="@+id/loginUsernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/rowdies"
+        android:text="Username:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTextTitle" />
 
     <TextView
         android:id="@+id/loginPasswordText"
@@ -54,6 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginUsernameText">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginUsernameEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Username1234" />
@@ -70,13 +71,14 @@
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordText">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnCreate"
         android:layout_width="228dp"
         android:layout_height="77dp"
         android:layout_marginTop="16dp"
@@ -87,14 +89,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordInput" />
 
-    <TextView
-        android:id="@+id/signInQuestionText"
+
+    <Button
+        android:id="@+id/createAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text=" Don´t have an account?"
+        android:text="I want to Register"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "546031579724",
+    "firebase_url": "https://habitappju-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "habitappju",
+    "storage_bucket": "habitappju.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546031579724:android:759e3beb381675f5c1bae9",
+        "android_client_info": {
+          "package_name": "com.example.sestudentjuhabitapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546031579724-5f3ekrhii6490mnhuao3h8ln395nvrj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sestudentjuhabitapp",
+            "certificate_hash": "11986770b678aaf5a0ff227c298da1df9a266a38"
+          }
+        },
+        {
+          "client_id": "546031579724-f13lk1bra7g09opmhipogu3k5ght235b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTuVrg03KzB3DXqDGq9ADBacqBVdQKgcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546031579724-f13lk1bra7g09opmhipogu3k5ght235b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

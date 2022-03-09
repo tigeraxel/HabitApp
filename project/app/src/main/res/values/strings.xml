@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">Se.student.ju.HabitApp</string>
 
+    <!-- Error handling messages -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="input_string_error_title">Input error!</string>
+    <string name="input_string_error_description">The text field must not be empty or exceed 50 characters.</string>
+
     <!-- Home Screen -->
-    <string name="home_top_textview_text">NewHabit</string>
     <string name="home_create_habit_button_text">Create New Habit</string>
     <string name="home_challenge_friend_button_text">Challenge a Friend</string>
     <string name="home_habit_calendar_button_text">Habit-Calendar</string>
@@ -18,13 +24,13 @@
     <string name="settings_dark_mode_switch_text">Dark</string>
 
     <!-- Create Habit -->
-    <string name="create_top_textview_text">Create Habit</string>
     <string name="create_create_habit_button_text">Create Habit!</string>
 
     <!-- Change Habit -->
-    <string name="change_top_textview_text">Change Habit</string>
     <string name="change_change_habit_button_text">Change!</string>
     <string name="change_delete_habit_button_text">Delete Habit!</string>
+    <string name="change_delete_habit_popup_title_text">Delete?</string>
+    <string name="change_delete_habit_popup_detail_text">Are you sure you want to delete?</string>
 
     <!-- Fragment reused in Create and Change -->
     <string name="fragment_new_habit_textview_text">Name of Habit:</string>
@@ -34,4 +40,11 @@
     <string name="fragment_notification_setting_textview_text">Notifications?</string>
     <string name="fragment_switch_on_text">On</string>
     <string name="fragment_switch_off_text">Off</string>
+    <string name="fragment_monday_text">M</string>
+    <string name="fragment_tuesday_text">T</string>
+    <string name="fragment_wednesday_text">W</string>
+    <string name="fragment_thursday_text">T</string>
+    <string name="fragment_friday_text">F</string>
+    <string name="fragment_saturday_text">S</string>
+    <string name="fragment_sunday_text">S</string>
 </resources>

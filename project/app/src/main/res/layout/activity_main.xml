@@ -19,12 +19,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
         android:id="@+id/btnChallengeActivity"
         android:layout_width="268dp"
         android:layout_height="74dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="36dp"
         android:text="Challenge A Friend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -35,14 +34,13 @@
         android:id="@+id/btnCalendarActivity"
         android:layout_width="268dp"
         android:layout_height="74dp"
-        android:layout_marginTop="21dp"
         android:text="Habit Calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChallengeActivity"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <Button
         android:id="@+id/btnCreateHabitActivity"
@@ -52,8 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewHabits" />
-
+        tools:layout_editor_absoluteY="430dp" />
 
     <ImageButton
         android:id="@+id/btnSettingsActivity"
@@ -62,19 +59,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_manage" />
-
-    <ScrollView
-        android:id="@+id/scrollViewHabits"
-        android:layout_width="365dp"
-        android:layout_height="260dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MainTextTitle">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

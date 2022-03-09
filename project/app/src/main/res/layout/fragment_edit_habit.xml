@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EditHabitFragment"
-    android:orientation="vertical">
+    tools:context=".EditHabitFragment">
 
     <TextView
         android:id="@+id/fragment_habit_name_textview"
@@ -13,8 +12,7 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_new_habit_textview_text"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/fragment_habit_name_edittext"
@@ -32,12 +30,70 @@
         android:text="@string/fragment_set_period_textview_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_habit_name_edittext"/>
 
-    <!-- todo: A 7 day calendar thing... -->
+    <!-- todo: A 7 day calendar thing... TEST WITH 7 BUTTONS: Looks OK. -->
     <Button
-        android:id="@+id/placeholder_button_7_day"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"/>
+        android:id="@+id/fragment_monday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_monday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_tuesday_button"/>
+    <Button
+        android:id="@+id/fragment_tuesday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_tuesday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_monday_button"
+        app:layout_constraintEnd_toStartOf="@id/fragment_wednesday_button"/>
+    <Button
+        android:id="@+id/fragment_wednesday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_wednesday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_tuesday_button"
+        app:layout_constraintEnd_toStartOf="@id/fragment_thursday_button"/>
+    <Button
+        android:id="@+id/fragment_thursday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_thursday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_wednesday_button"
+        app:layout_constraintEnd_toStartOf="@id/fragment_friday_button"/>
+    <Button
+        android:id="@+id/fragment_friday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_friday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_thursday_button"
+        app:layout_constraintEnd_toStartOf="@id/fragment_saturday_button"/>
+    <Button
+        android:id="@+id/fragment_saturday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_saturday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_friday_button"
+        app:layout_constraintEnd_toStartOf="@id/fragment_sunday_button"/>
+    <Button
+        android:id="@+id/fragment_sunday_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/fragment_sunday_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
+        app:layout_constraintStart_toEndOf="@id/fragment_saturday_button"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/fragment_set_time_textview"
@@ -45,13 +101,15 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_set_time_textview_text"
-        app:layout_constraintTop_toBottomOf="@id/placeholder_button_7_day"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_monday_button"/>
 
-    <!-- todo: Time picker thing... -->
-    <Button
-        android:id="@+id/placeholder_button_picker"
+    <!-- todo: Time picker thing... Seem to work ok, but need to remove fm / em -->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_time_picker_container"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
+        android:name="com.example.sestudentjuhabitapp.TimePickerFragment"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_time_textview"/>
 
     <TextView
@@ -60,12 +118,12 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_notification_setting_textview_text"
-        app:layout_constraintTop_toBottomOf="@id/placeholder_button_picker"/>
-
+        app:layout_constraintTop_toBottomOf="@id/fragment_time_picker_container"/>
 
     <Switch
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:id="@+id/fragment_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:showText="true"
         android:layout_margin="10dp"
         android:splitTrack="true"

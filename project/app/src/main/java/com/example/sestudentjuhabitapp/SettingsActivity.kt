@@ -12,7 +12,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
         val btnChangeUserInfo = findViewById<Button>(R.id.btnChangeUserInfo)
-        val btnLogout = findViewById<Button>(R.id.btnChangeUserInfo)
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
 
         //Change User Information with the database when clicked
         btnChangeUserInfo.setOnClickListener {

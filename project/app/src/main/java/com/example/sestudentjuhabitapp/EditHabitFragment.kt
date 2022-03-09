@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Switch
 import androidx.appcompat.widget.SwitchCompat
 
@@ -52,6 +53,9 @@ class EditHabitFragment : Fragment() {
         selectSaturdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
         selectSundayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
 
+        val inputHabitName = view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)
+        val habitName = inputHabitName?.text.toString()
+        // Todo: Add to habit class / or firebase.
     }
 
     override fun onCreateView( // Returns a root view object.

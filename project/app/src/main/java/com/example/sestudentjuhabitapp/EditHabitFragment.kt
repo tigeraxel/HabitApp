@@ -1,16 +1,23 @@
 package com.example.sestudentjuhabitapp
 
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.graphics.Color
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Switch
-import android.widget.ToggleButton
+import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import androidx.fragment.app.DialogFragment
+import java.util.*
+import kotlin.collections.HashMap
+import android.widget.TimePicker
+
+
+
 
 /*
 Fragment used to create and edit an habit.
@@ -31,7 +38,7 @@ fun newInstance(data : data type) = EditHabitFragment().apply{
  */
 
 class EditHabitFragment : Fragment() {
-
+    val habit = HabitClass()
     // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
@@ -39,24 +46,8 @@ class EditHabitFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // startValue = requireArguments().getInt("key") // Example
 
-        val selectMondayBtn = view?.findViewById<ToggleButton>(R.id.fragment_monday_button)
-        val selectTuesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_tuesday_button)
-        val selectWednesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_wednesday_button)
-        val selectThursdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_thursday_button)
-        val selectFridayBtn = view?.findViewById<ToggleButton>(R.id.fragment_friday_button)
-        val selectSaturdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_saturday_button)
-        val selectSundayBtn = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
 
-        selectMondayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectTuesdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectWednesdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectThursdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectFridayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectSaturdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
-        selectSundayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
 
-        val inputHabitName = view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)
-        val habitName = inputHabitName?.text.toString()
         // Todo: Add to habit class / or firebase.
     }
 
@@ -71,7 +62,48 @@ class EditHabitFragment : Fragment() {
         //val editText = view.findViewById<EditText>(R.id.exampleId) // Example
         // editText.text // Example
 
-        val notificationsSwitchView = view.findViewById<Switch>(R.id.fragment_switch)
-        notificationsSwitchView.setOnClickListener{ /* Todo: toggle notifications */}
+    }
+
+    public fun insertToDB(){
+
+        val titleOfHabit = view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)!!.text.toString()
+        val selectMondayBtn = view?.findViewById<ToggleButton>(R.id.fragment_monday_button)
+        val selectTuesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_tuesday_button)
+        val selectWednesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_wednesday_button)
+        val selectThursdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_thursday_button)
+        val selectFridayBtn = view?.findViewById<ToggleButton>(R.id.fragment_friday_button)
+        val selectSaturdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_saturday_button)
+        val selectSundayBtn = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
+
+        val pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
+        val selectTimeButton = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
+        var time = ""
+
+        val newCalendar = Calendar.getInstance()
+        selectTimeButton!!.setOnClickListener(){
+        }
+
+        val currentTime = Calendar.getInstance()
+            val startHour = currentTime.get(Calendar.HOUR_OF_DAY)
+            val startMinute = currentTime.get(Calendar.MINUTE)
+
+        var days = HashMap<String, Boolean> ()
+        if(selectMondayBtn!!.isChecked())
+        days.put("monday" , true)
+        if(selectTuesdayBtn!!.isChecked())
+        days.put("tuesday" , true)
+        if(selectWednesdayBtn!!.isChecked())
+            days.put("wednesday" , true)
+        if(selectThursdayBtn!!.isChecked())
+            days.put("thursday" , true)
+        if(selectFridayBtn!!.isChecked())
+            days.put("friday" , true)
+        if(selectSaturdayBtn!!.isChecked())
+            days.put("saturday" , true)
+        if(selectSundayBtn!!.isChecked())
+            days.put("sunday" , true)
+
+        habit.insertHabit(titleOfHabit, days, pushNotificationBool, time)
     }
 }
+

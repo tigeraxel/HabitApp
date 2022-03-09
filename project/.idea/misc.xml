@@ -5,16 +5,18 @@
       <map>
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_calender.xml" value="0.4" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_challenge.xml" value="0.264" />
-        <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_new_habit.xml" value="0.17481884057971014" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_settings.xml" value="0.264" />
         <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
-        <entry key="..\:/Android/ProjektArbete/HabitApp/project/app/src/main/res/layout/fragment_time_picker.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_change_habit.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.3464285714285714" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_new_habit.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_edit_habit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_time_picker.xml" value="0.19972826086956522" />
       </map>
     </option>
   </component>

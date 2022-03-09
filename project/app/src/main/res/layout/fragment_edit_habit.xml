@@ -31,66 +31,73 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_habit_name_edittext"/>
 
     <!-- todo: A 7 day calendar thing... TEST WITH 7 BUTTONS: Looks OK. -->
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_monday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_monday_text"
+        android:textOn="@string/fragment_monday_text"
+        android:textOff="@string/fragment_monday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fragment_tuesday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_tuesday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_tuesday_text"
+        android:textOn="@string/fragment_tuesday_text"
+        android:textOff="@string/fragment_tuesday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_monday_button"
         app:layout_constraintEnd_toStartOf="@id/fragment_wednesday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_wednesday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_wednesday_text"
+        android:textOn="@string/fragment_wednesday_text"
+        android:textOff="@string/fragment_wednesday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_tuesday_button"
         app:layout_constraintEnd_toStartOf="@id/fragment_thursday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_thursday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_thursday_text"
+        android:textOn="@string/fragment_thursday_text"
+        android:textOff="@string/fragment_thursday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_wednesday_button"
         app:layout_constraintEnd_toStartOf="@id/fragment_friday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_friday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_friday_text"
+        android:textOn="@string/fragment_friday_text"
+        android:textOff="@string/fragment_friday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_thursday_button"
         app:layout_constraintEnd_toStartOf="@id/fragment_saturday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_saturday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_saturday_text"
+        android:textOn="@string/fragment_saturday_text"
+        android:textOff="@string/fragment_saturday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_friday_button"
         app:layout_constraintEnd_toStartOf="@id/fragment_sunday_button"/>
-    <Button
+    <ToggleButton
         android:id="@+id/fragment_sunday_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/fragment_sunday_text"
+        android:textOn="@string/fragment_sunday_text"
+        android:textOff="@string/fragment_sunday_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview"
         app:layout_constraintStart_toEndOf="@id/fragment_saturday_button"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -1,5 +1,6 @@
 package com.example.sestudentjuhabitapp
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
+import android.widget.ToggleButton
 import androidx.appcompat.widget.SwitchCompat
 
 /*
@@ -37,13 +39,13 @@ class EditHabitFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // startValue = requireArguments().getInt("key") // Example
 
-        val selectMondayBtn = view?.findViewById<Button>(R.id.fragment_monday_button)
-        val selectTuesdayBtn = view?.findViewById<Button>(R.id.fragment_tuesday_button)
-        val selectWednesdayBtn = view?.findViewById<Button>(R.id.fragment_wednesday_button)
-        val selectThursdayBtn = view?.findViewById<Button>(R.id.fragment_thursday_button)
-        val selectFridayBtn = view?.findViewById<Button>(R.id.fragment_friday_button)
-        val selectSaturdayBtn = view?.findViewById<Button>(R.id.fragment_saturday_button)
-        val selectSundayBtn = view?.findViewById<Button>(R.id.fragment_sunday_button)
+        val selectMondayBtn = view?.findViewById<ToggleButton>(R.id.fragment_monday_button)
+        val selectTuesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_tuesday_button)
+        val selectWednesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_wednesday_button)
+        val selectThursdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_thursday_button)
+        val selectFridayBtn = view?.findViewById<ToggleButton>(R.id.fragment_friday_button)
+        val selectSaturdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_saturday_button)
+        val selectSundayBtn = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
 
         selectMondayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}
         selectTuesdayBtn?.setOnClickListener{ /* todo: do something with the date of the habit. */}

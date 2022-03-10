@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="HabitColor">#F08080</color>
+    <color name="HabitColorDark">#FB5D5D</color>
+    <color name="HabitColorLight">#EFA4A4</color>
+    <color name="HabitColorSecondary">#FFC107</color>
+    <color name="HabitColorSecondaryDark">#FF9800</color>
 </resources>

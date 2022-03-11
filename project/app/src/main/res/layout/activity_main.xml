@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChallengeActivity"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.342" />
 
     <Button
         android:id="@+id/btnCreateHabitActivity"
@@ -48,9 +48,9 @@
         android:layout_height="74dp"
         android:text="Create New Habit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habitScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
     <ImageButton
         android:id="@+id/btnSettingsActivity"
@@ -60,18 +60,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_manage" />
 
-    <ScrollView
-        android:id="@+id/habitScrollView"
-        android:layout_width="409dp"
-        android:layout_height="288dp"
-        android:layout_marginTop="1dp"
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="265dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MainTextTitle">
+        app:layout_constraintTop_toBottomOf="@+id/MainTextTitle"
+        tools:listitem="@layout/habits" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

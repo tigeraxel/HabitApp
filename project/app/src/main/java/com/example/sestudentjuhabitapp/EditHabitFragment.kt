@@ -34,10 +34,11 @@ class EditHabitFragment : Fragment() {
             val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
             val currentMinute = calendar.get(Calendar.MINUTE)
             val timePick = TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener(function = {_, h, m ->
-                userTime = h.toString() + ":" + m.toString() // Sets the time to the member variable.
+                userTime = "$h:$m" // Sets the time to the member variable.
             }),currentHour, currentMinute, true)
             timePick.show()
         }
+
     }
 
     public fun insertToDB(){
@@ -70,6 +71,8 @@ class EditHabitFragment : Fragment() {
             days.put("sunday" , true)
 
         habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime)
+
+
     }
 }
 

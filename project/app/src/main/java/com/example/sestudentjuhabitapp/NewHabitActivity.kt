@@ -40,6 +40,7 @@ class NewHabitActivity : AppCompatActivity() {
             val fragment: EditHabitFragment =
                 fm.findFragmentById(R.id.create_fragment_container_view) as EditHabitFragment
             fragment.insertToDB()
+            finish()
         }
     }
 

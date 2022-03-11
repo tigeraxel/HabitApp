@@ -18,6 +18,8 @@
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/fragment_edit_habit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_time_picker.xml" value="0.19972826086956522" />
+        <entry key="app/src/main/res/layout/habits.xml" value="0.16621376811594202" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.16770833333333332" />
       </map>
     </option>
   </component>

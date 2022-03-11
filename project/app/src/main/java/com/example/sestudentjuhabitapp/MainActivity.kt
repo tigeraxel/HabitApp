@@ -5,11 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+
+    private var mAuth = FirebaseAuth.getInstance();
+    private val database = Firebase.database
+    private var userID = mAuth!!.currentUser!!.uid
+    lateinit var habitsRef: DatabaseReference
+    lateinit var habitList: MutableList<HabitDataClass>
+    lateinit var listView : ListView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        listView = findViewById(R.id.listView)
+
 
 
         val btnCreateHabitActivity = findViewById<Button>(R.id.btnCreateHabitActivity)
@@ -41,4 +63,31 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        habitList = mutableListOf()
+        habitsRef = database.getReference("users").child(userID).child("Habits")
+        habitsRef.addValueEventListener(object : ValueEventListener {
+
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for(h in snapshot.children){
+                        val habit = h.getValue(HabitDataClass::class.java)
+                        habitList.add(habit!!)
+                    }
+                    val adapter = habitAdapter(applicationContext, R.layout.habits, habitList)
+                    listView.adapter = adapter
+                }
+            }
+
+
+        })
+    }
+
 }

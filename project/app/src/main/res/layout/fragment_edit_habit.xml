@@ -30,7 +30,6 @@
         android:text="@string/fragment_set_period_textview_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_habit_name_edittext" />
 
-    <!-- todo: A 7 day calendar thing... TEST WITH 7 BUTTONS: Looks OK. -->
     <ToggleButton
         android:id="@+id/fragment_monday_button"
         android:layout_width="0dp"
@@ -108,19 +107,15 @@
         app:layout_constraintStart_toEndOf="@id/fragment_saturday_button"
         app:layout_constraintTop_toBottomOf="@id/fragment_set_period_textview" />
 
-    <!-- todo: Time picker thing... Seem to work ok, but need to remove fm / em -->
-
-
     <Button
-        android:id="@+id/select_time_button"
-        android:layout_width="268dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="12dp"
-        android:text="Select Time"
+        android:id="@+id/fragment_timepicker_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_set_time_textview_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_thursday_button" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_sunday_button"
+        app:layout_constraintBottom_toTopOf="@id/fragment_notifications_textview"/>
 
     <TextView
         android:id="@+id/fragment_notifications_textview"
@@ -128,7 +123,7 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/fragment_notification_setting_textview_text"
-        app:layout_constraintTop_toBottomOf="@+id/select_time_button"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_timepicker_button"
         tools:layout_editor_absoluteX="16dp" />
 
     <Switch

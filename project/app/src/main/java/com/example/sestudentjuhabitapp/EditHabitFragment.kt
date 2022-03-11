@@ -1,57 +1,25 @@
 package com.example.sestudentjuhabitapp
 
 import android.app.TimePickerDialog
-import android.app.TimePickerDialog.OnTimeSetListener
-import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import java.util.*
-import kotlin.collections.HashMap
-import android.widget.TimePicker
-
-
-
-
-/*
-Fragment used to create and edit an habit.
-
-To use the fragment outside of xml implementations, call the class method: newInstance()
-
-val a = EditHabitFragment() This would work, but not compatible with runtime config changes.
-
-The helper initializer, newInstance(), allows for the use of Bundles, which will survive runtime config changes.
-
-To send data to the fragment's Bundle:
-
-fun newInstance(data : data type) = EditHabitFragment().apply{
-    arguments = Bundle().apply{
-        putDatatype("key", data)
-    }
-}
- */
 
 class EditHabitFragment : Fragment() {
     val habit = HabitClass()
     // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // startValue = requireArguments().getInt("key") // Example
+    private var userTime = "" // Holds the time set by the user.
 
-
-
-        // Todo: Add to habit class / or firebase.
-    }
-
-    override fun onCreateView( // Returns a root view object.
+        override fun onCreateView( // Returns a root view object.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = inflater.inflate(R.layout.fragment_edit_habit, container, false)!!
@@ -59,9 +27,17 @@ class EditHabitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // Needs to find and fill any required views.
         super.onViewCreated(view, savedInstanceState)
 
-        //val editText = view.findViewById<EditText>(R.id.exampleId) // Example
-        // editText.text // Example
+        val selectTimeButton = view.findViewById<Button>(R.id.fragment_timepicker_button)
+        selectTimeButton?.setOnClickListener{
 
+            val calendar = Calendar.getInstance()
+            val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+            val currentMinute = calendar.get(Calendar.MINUTE)
+            val timePick = TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener(function = {_, h, m ->
+                userTime = h.toString() + ":" + m.toString() // Sets the time to the member variable.
+            }),currentHour, currentMinute, true)
+            timePick.show()
+        }
     }
 
     public fun insertToDB(){
@@ -76,16 +52,6 @@ class EditHabitFragment : Fragment() {
         val selectSundayBtn = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
 
         val pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
-        val selectTimeButton = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
-        var time = ""
-
-        val newCalendar = Calendar.getInstance()
-        selectTimeButton!!.setOnClickListener(){
-        }
-
-        val currentTime = Calendar.getInstance()
-            val startHour = currentTime.get(Calendar.HOUR_OF_DAY)
-            val startMinute = currentTime.get(Calendar.MINUTE)
 
         var days = HashMap<String, Boolean> ()
         if(selectMondayBtn!!.isChecked())
@@ -103,7 +69,7 @@ class EditHabitFragment : Fragment() {
         if(selectSundayBtn!!.isChecked())
             days.put("sunday" , true)
 
-        habit.insertHabit(titleOfHabit, days, pushNotificationBool, time)
+        habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime)
     }
 }
 

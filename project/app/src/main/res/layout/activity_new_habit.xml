@@ -13,7 +13,8 @@
         android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@id/create_create_habit_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.example.sestudentjuhabitapp.EditHabitFragment"/>
     <!-- android:name="fragment_name" does not work when the creation method takes in arguments, don't yet know if mine will -->
 
     <!-- constrained the fuck out of it, stop complaining now android studio :( -->

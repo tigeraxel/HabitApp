@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createPassswordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/createPasswordEditText" />
 
     <Button
         android:id="@+id/btnLoginToAccount"
@@ -75,14 +75,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:textColor="?android:textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/createEmailText"
         tools:layout_editor_absoluteX="16dp" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/createPassswordEditText"
+        android:id="@+id/createPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:textColor="?android:textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/createPasswordText"
         tools:layout_editor_absoluteX="0dp" />
 

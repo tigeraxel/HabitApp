@@ -23,10 +23,10 @@
         android:id="@+id/btnChallengeActivity"
         android:layout_width="268dp"
         android:layout_height="74dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="35dp"
         android:text="Challenge A Friend"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCreateHabitActivity" />
 
@@ -34,6 +34,8 @@
         android:id="@+id/btnCalendarActivity"
         android:layout_width="268dp"
         android:layout_height="74dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="35dp"
         android:text="Habit Calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +48,10 @@
         android:id="@+id/btnCreateHabitActivity"
         android:layout_width="268dp"
         android:layout_height="74dp"
+        android:layout_marginTop="35dp"
         android:text="Create New Habit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView" />
 
@@ -56,9 +59,10 @@
         android:id="@+id/btnSettingsActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_manage" />
+        app:srcCompat="@drawable/ic_baseline_settings_40" />
 
 
     <ListView

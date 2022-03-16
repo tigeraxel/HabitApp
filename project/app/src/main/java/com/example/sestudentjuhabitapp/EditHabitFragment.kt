@@ -19,31 +19,43 @@ class EditHabitFragment : Fragment() {
 
     private var userTime = "" // Holds the time set by the user.
 
-        override fun onCreateView( // Returns a root view object.
+    override fun onCreateView( // Returns a root view object.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = inflater.inflate(R.layout.fragment_edit_habit, container, false)!!
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // Needs to find and fill any required views.
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) { // Needs to find and fill any required views.
         super.onViewCreated(view, savedInstanceState)
 
         val selectTimeButton = view.findViewById<Button>(R.id.fragment_timepicker_button)
-        selectTimeButton?.setOnClickListener{
+        selectTimeButton?.setOnClickListener {
 
             val calendar = Calendar.getInstance()
             val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
             val currentMinute = calendar.get(Calendar.MINUTE)
-            val timePick = TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener(function = {_, h, m ->
-                userTime = "$h:$m" // Sets the time to the member variable.
-            }),currentHour, currentMinute, true)
+            val timePick = TimePickerDialog(
+                activity,
+                TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+                    if (m > 9)
+                        userTime = "$h:$m" // Sets the time to the member variable.
+                    else userTime = "$h:0$m"
+                }),
+                currentHour,
+                currentMinute,
+                true
+            )
             timePick.show()
         }
 
     }
 
-    public fun insertToDB(){
+    public fun insertToDB() {
 
-        val titleOfHabit = view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)!!.text.toString()
+        val titleOfHabit =
+            view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)!!.text.toString()
         val selectMondayBtn = view?.findViewById<ToggleButton>(R.id.fragment_monday_button)
         val selectTuesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_tuesday_button)
         val selectWednesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_wednesday_button)
@@ -54,21 +66,21 @@ class EditHabitFragment : Fragment() {
 
         val pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
 
-        var days = HashMap<String, Boolean> ()
-        if(selectMondayBtn!!.isChecked())
-        days.put("monday" , true)
-        if(selectTuesdayBtn!!.isChecked())
-        days.put("tuesday" , true)
-        if(selectWednesdayBtn!!.isChecked())
-            days.put("wednesday" , true)
-        if(selectThursdayBtn!!.isChecked())
-            days.put("thursday" , true)
-        if(selectFridayBtn!!.isChecked())
-            days.put("friday" , true)
-        if(selectSaturdayBtn!!.isChecked())
-            days.put("saturday" , true)
-        if(selectSundayBtn!!.isChecked())
-            days.put("sunday" , true)
+        var days = HashMap<String, Boolean>()
+        if (selectMondayBtn!!.isChecked())
+            days.put("monday", true)
+        if (selectTuesdayBtn!!.isChecked())
+            days.put("tuesday", true)
+        if (selectWednesdayBtn!!.isChecked())
+            days.put("wednesday", true)
+        if (selectThursdayBtn!!.isChecked())
+            days.put("thursday", true)
+        if (selectFridayBtn!!.isChecked())
+            days.put("friday", true)
+        if (selectSaturdayBtn!!.isChecked())
+            days.put("saturday", true)
+        if (selectSundayBtn!!.isChecked())
+            days.put("sunday", true)
 
         habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime)
 

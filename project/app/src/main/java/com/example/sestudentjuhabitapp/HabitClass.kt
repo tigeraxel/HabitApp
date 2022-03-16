@@ -2,6 +2,7 @@ package com.example.sestudentjuhabitapp
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
@@ -39,6 +40,31 @@ class HabitClass {
         var newHabit = HabitData(name, days, pushNotification, time, email)
         userReference.child(name).setValue(newHabit)
 
+    }
+
+    fun deleteHabit(nameOfHabit: String) {
+        database.getReference("users").child(email).child("Habits").child(nameOfHabit)
+            .removeValue()
+    }
+
+    fun deleteChallenge(nameOfHabit: String) {
+        database.getReference("users").child(email).child("HabitChallenges").child(nameOfHabit)
+            .removeValue()
+    }
+
+    fun acceptChallenge(nameOfHabit: String) {
+        database.getReference("users").child(email).child("HabitChallenges")
+            .child(nameOfHabit).get().addOnSuccessListener {
+                val reqHabit = it.getValue<HabitData>()
+                insertHabit(
+                    reqHabit!!.name!!,
+                    reqHabit!!.days!!,
+                    reqHabit!!.pushNotification!!,
+                    reqHabit!!.time!!
+                )
+                database.getReference("users").child(email).child("HabitChallenges")
+                    .child(reqHabit.name!!).removeValue()
+            }
     }
 
 }

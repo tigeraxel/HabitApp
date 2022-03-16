@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 
-class habitAdapter(val mCtx: Context, val layoutResId: Int, val habitList: List<HabitDataClass>) :
-    ArrayAdapter<HabitDataClass>(mCtx, layoutResId, habitList) {
+class habitAdapter(val mCtx: Context, val layoutResId: Int, val habitList: List<HabitData>) :
+    ArrayAdapter<HabitData>(mCtx, layoutResId, habitList) {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

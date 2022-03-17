@@ -11,18 +11,32 @@ import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import java.util.*
+import kotlin.properties.Delegates
 
 class EditHabitFragment : Fragment() {
     val habit = HabitClass()
+    lateinit var titleOfHabit: EditText
+    lateinit var selectMondayBtn: ToggleButton
+    lateinit var selectTuesdayBtn: ToggleButton
+    lateinit var selectWednesdayBtn: ToggleButton
+    lateinit var selectThursdayBtn: ToggleButton
+    lateinit var selectFridayBtn: ToggleButton
+    lateinit var selectSaturdayBtn: ToggleButton
+    lateinit var selectSundayBtn: ToggleButton
+    var pushNotificationBool by Delegates.notNull<Boolean>()
+    lateinit var selectTimeButton: Button
+
     // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
     private var userTime = "" // Holds the time set by the user.
 
-    override fun onCreateView( // Returns a root view object.
+    override fun onCreateView(
+        // Returns a root view object.
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_edit_habit, container, false)!!
+        savedInstanceState: Bundle?,
+
+        ) = inflater.inflate(R.layout.fragment_edit_habit, container, false)!!
 
     override fun onViewCreated(
         view: View,
@@ -30,7 +44,20 @@ class EditHabitFragment : Fragment() {
     ) { // Needs to find and fill any required views.
         super.onViewCreated(view, savedInstanceState)
 
-        val selectTimeButton = view.findViewById<Button>(R.id.fragment_timepicker_button)
+        titleOfHabit =
+            view?.findViewById(R.id.fragment_habit_name_edittext)
+        selectMondayBtn = view?.findViewById(R.id.fragment_monday_button)
+        selectTuesdayBtn = view?.findViewById(R.id.fragment_tuesday_button)
+        selectWednesdayBtn = view?.findViewById(R.id.fragment_wednesday_button)
+        selectThursdayBtn = view?.findViewById(R.id.fragment_thursday_button)
+        selectFridayBtn = view?.findViewById(R.id.fragment_friday_button)
+        selectSaturdayBtn = view?.findViewById(R.id.fragment_saturday_button)
+        selectSundayBtn = view?.findViewById(R.id.fragment_sunday_button)
+        pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
+        selectTimeButton = view.findViewById(R.id.fragment_timepicker_button)
+
+
+
         selectTimeButton?.setOnClickListener {
 
             val calendar = Calendar.getInstance()
@@ -49,22 +76,11 @@ class EditHabitFragment : Fragment() {
             )
             timePick.show()
         }
-
     }
 
+
     public fun insertToDB() {
-
-        val titleOfHabit =
-            view?.findViewById<EditText>(R.id.fragment_habit_name_edittext)!!.text.toString()
-        val selectMondayBtn = view?.findViewById<ToggleButton>(R.id.fragment_monday_button)
-        val selectTuesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_tuesday_button)
-        val selectWednesdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_wednesday_button)
-        val selectThursdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_thursday_button)
-        val selectFridayBtn = view?.findViewById<ToggleButton>(R.id.fragment_friday_button)
-        val selectSaturdayBtn = view?.findViewById<ToggleButton>(R.id.fragment_saturday_button)
-        val selectSundayBtn = view?.findViewById<ToggleButton>(R.id.fragment_sunday_button)
-
-        val pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
+        var titleOfHabitText = titleOfHabit.text.toString()
 
         var days = HashMap<String, Boolean>()
         if (selectMondayBtn!!.isChecked())
@@ -82,9 +98,9 @@ class EditHabitFragment : Fragment() {
         if (selectSundayBtn!!.isChecked())
             days.put("sunday", true)
 
-        habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime,"")
-
+        habit.insertHabit(titleOfHabitText, days, pushNotificationBool, userTime, "")
 
     }
+
 }
 

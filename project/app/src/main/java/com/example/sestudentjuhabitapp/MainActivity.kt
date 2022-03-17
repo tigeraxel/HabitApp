@@ -74,49 +74,55 @@ class MainActivity : AppCompatActivity() {
                 if (it.hasChildren()) {
                     for (snapshot in it.children) {
                         var reqHabit = snapshot.getValue<HabitData>()
-                        Log.i("habit" , reqHabit.toString())
+                        Log.i("habit", reqHabit.toString())
                         val dialogBuilder = AlertDialog.Builder(this)
                         var arrayOfDays = arrayListOf<String>()
-                        if(reqHabit!!.days!!["monday"] == true)
+                        if (reqHabit!!.days!!["monday"] == true)
                             arrayOfDays.add("monday")
-                        if(reqHabit!!.days!!["tuesday"] == true)
+                        if (reqHabit!!.days!!["tuesday"] == true)
                             arrayOfDays.add("tuesday")
-                        if(reqHabit!!.days!!["wednesday"] == true)
+                        if (reqHabit!!.days!!["wednesday"] == true)
                             arrayOfDays.add("wednesday")
-                        if(reqHabit!!.days!!["thursday"] == true)
+                        if (reqHabit!!.days!!["thursday"] == true)
                             arrayOfDays.add("thursday")
-                        if(reqHabit!!.days!!["friday"] == true)
+                        if (reqHabit!!.days!!["friday"] == true)
                             arrayOfDays.add("friday")
-                        if(reqHabit!!.days!!["saturday"] == true)
+                        if (reqHabit!!.days!!["saturday"] == true)
                             arrayOfDays.add("saturday")
-                        if(reqHabit!!.days!!["sunday"] == true)
+                        if (reqHabit!!.days!!["sunday"] == true)
                             arrayOfDays.add("sunday")
-                        var Days = arrayOfDays.toString().replace("[","")
-                        Days = Days.replace("]","")
+                        var Days = arrayOfDays.toString().replace("[", "")
+                        Days = Days.replace("]", "")
                         var Notification = ""
-                        if(reqHabit.pushNotification == true)
+                        if (reqHabit.pushNotification == true)
                             Notification = "Notifications is on"
                         else Notification = "Notifications is off"
 
 
 
-                        dialogBuilder.setMessage(" ${reqHabit!!.challenger} have challenged you!" +"\n" +
-                                "The name of the challenge is ${reqHabit!!.name}"+"\n" +
-                                "The challenge is done on $Days"+"\n" +
-                                "The time everday is ${reqHabit!!.time}"+"\n" +
-                                " $Notification")
+                        dialogBuilder.setMessage(
+                            " ${reqHabit!!.challenger} have challenged you!" + "\n" +
+                                    "The name of the challenge is ${reqHabit!!.name}" + "\n" +
+                                    "The challenge is done on $Days" + "\n" +
+                                    "The time everday is ${reqHabit!!.time}" + "\n" +
+                                    " $Notification"
+                        )
                             // if the dialog is cancelable
                             .setCancelable(false)
                             // positive button text and action
-                            .setPositiveButton("accept", DialogInterface.OnClickListener {
-                                    dialog, id -> habit.acceptChallenge(reqHabit.name!!)
-                                dialog.cancel()
-                            })
+                            .setPositiveButton(
+                                "accept",
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    habit.acceptChallenge(reqHabit.name!!)
+                                    dialog.cancel()
+                                })
                             // negative button text and action
-                            .setNegativeButton("deny", DialogInterface.OnClickListener {
-                                    dialog, id -> habit.deleteChallenge(reqHabit.name!!)
-                                dialog.cancel()
-                            })
+                            .setNegativeButton(
+                                "deny",
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    habit.deleteChallenge(reqHabit.name!!)
+                                    dialog.cancel()
+                                })
 
                         // create dialog box
                         val alert = dialogBuilder.create()
@@ -142,10 +148,24 @@ class MainActivity : AppCompatActivity() {
                     }
                     val adapter = habitAdapter(applicationContext, R.layout.habits, habitList)
                     listView.adapter = adapter
+                    listView.setOnItemClickListener { parent, view, position, id ->
+
+                        var selectedHabit = habitList[position]
+                        changeHabitIntent(selectedHabit.name!!)
+
+                        // The item that was clicked
+                        // val intent = Intent(this, BookDetailActivity::class.java)
+                        // startActivity(intent)
+                    }
                 }
             }
 
         })
     }
 
+    fun changeHabitIntent(habitName: String) {
+        var intent = Intent(this, ChangeHabitActivity::class.java)
+        intent.putExtra("habitName", habitName)
+        startActivity(intent)
+    }
 }

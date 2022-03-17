@@ -50,7 +50,9 @@ class LoginActivity : AppCompatActivity() {
                                 "userID",
                                 userID
                             )
+
                         )
+                        finish()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)

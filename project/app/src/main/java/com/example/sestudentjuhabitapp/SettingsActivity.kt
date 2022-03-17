@@ -24,6 +24,7 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             //Change "keep inlogged boolean"
             startActivity(intent)
+            finish()
         }
     }
 }

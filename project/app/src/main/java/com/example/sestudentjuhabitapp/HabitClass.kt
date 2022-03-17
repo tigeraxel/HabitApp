@@ -18,10 +18,11 @@ class HabitClass {
         name: String,
         days: HashMap<String, Boolean>,
         pushNotification: Boolean,
-        time: String
+        time: String,
+        challenger: String
     ) {
         val userReference = database.getReference("users").child(email).child("Habits")
-        var newHabit = HabitData(name, days, pushNotification, time, "")
+        var newHabit = HabitData(name, days, pushNotification, time, challenger)
         userReference.child(name).setValue(newHabit)
 
     }
@@ -60,7 +61,8 @@ class HabitClass {
                     reqHabit!!.name!!,
                     reqHabit!!.days!!,
                     reqHabit!!.pushNotification!!,
-                    reqHabit!!.time!!
+                    reqHabit!!.time!!,
+                    reqHabit!!.challenger!!
                 )
                 database.getReference("users").child(email).child("HabitChallenges")
                     .child(reqHabit.name!!).removeValue()

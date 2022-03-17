@@ -82,7 +82,7 @@ class EditHabitFragment : Fragment() {
         if (selectSundayBtn!!.isChecked())
             days.put("sunday", true)
 
-        habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime)
+        habit.insertHabit(titleOfHabit, days, pushNotificationBool, userTime,"")
 
 
     }

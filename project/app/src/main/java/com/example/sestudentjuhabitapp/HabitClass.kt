@@ -1,7 +1,9 @@
 package com.example.sestudentjuhabitapp
 
 import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -15,14 +17,11 @@ class HabitClass {
     private val database = Firebase.database
 
 
-    fun getHabit(name: String): HabitData {
+    fun getHabit(name: String): Task<DataSnapshot> {
         var currentHabit = HabitData()
-        database.getReference("users").child(email).child("Habits").child(name).get()
-            .addOnSuccessListener {
-                currentHabit = it.getValue<HabitData>()!!
-                Log.d("jhekeke", currentHabit.name!!)
-            }
-        return currentHabit
+        return database.getReference("users").child(email).child("Habits").child(name).get()
+
+
     }
 
 

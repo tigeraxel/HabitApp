@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.ktx.getValue
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -23,9 +24,9 @@ class EditHabitFragment : Fragment() {
     lateinit var selectFridayBtn: ToggleButton
     lateinit var selectSaturdayBtn: ToggleButton
     lateinit var selectSundayBtn: ToggleButton
-    var pushNotificationBool by Delegates.notNull<Boolean>()
+    lateinit var pushNotificationBool : Switch
     lateinit var selectTimeButton: Button
-
+    var habitName : String = ""
     // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
@@ -44,6 +45,8 @@ class EditHabitFragment : Fragment() {
     ) { // Needs to find and fill any required views.
         super.onViewCreated(view, savedInstanceState)
 
+
+
         titleOfHabit =
             view?.findViewById(R.id.fragment_habit_name_edittext)
         selectMondayBtn = view?.findViewById(R.id.fragment_monday_button)
@@ -53,10 +56,35 @@ class EditHabitFragment : Fragment() {
         selectFridayBtn = view?.findViewById(R.id.fragment_friday_button)
         selectSaturdayBtn = view?.findViewById(R.id.fragment_saturday_button)
         selectSundayBtn = view?.findViewById(R.id.fragment_sunday_button)
-        pushNotificationBool = view?.findViewById<Switch>(R.id.fragment_switch)!!.isChecked
+        pushNotificationBool = view?.findViewById(R.id.fragment_switch)
         selectTimeButton = view.findViewById(R.id.fragment_timepicker_button)
 
 
+        if(habitName != ""){
+            var currentHabit = habit.getHabit(habitName)
+                .addOnSuccessListener {
+                    val currentHabit = it.getValue<HabitData>()!!
+                    titleOfHabit.setText(currentHabit.name)
+                    if(currentHabit.days?.get("monday") == true)
+                        selectMondayBtn.isChecked = true
+                    if(currentHabit.days?.get("tuesday") == true)
+                        selectTuesdayBtn.isChecked = true
+                    if(currentHabit.days?.get("wednesday") == true)
+                        selectWednesdayBtn.isChecked = true
+                    if(currentHabit.days?.get("thursday") == true)
+                        selectThursdayBtn.isChecked = true
+                    if(currentHabit.days?.get("friday") == true)
+                        selectFridayBtn.isChecked = true
+                    if(currentHabit.days?.get("saturday") == true)
+                        selectSaturdayBtn.isChecked = true
+                    if(currentHabit.days?.get("sunday") == true)
+                        selectSundayBtn.isChecked = true
+                    userTime = currentHabit.time!!
+                    if(currentHabit.pushNotification == true)
+                        pushNotificationBool.isChecked = true
+                }
+            Log.d("EditHabitFragment", currentHabit.toString())
+        }
 
         selectTimeButton?.setOnClickListener {
 
@@ -98,9 +126,17 @@ class EditHabitFragment : Fragment() {
         if (selectSundayBtn!!.isChecked())
             days.put("sunday", true)
 
-        habit.insertHabit(titleOfHabitText, days, pushNotificationBool, userTime, "")
-
+        habit.insertHabit(titleOfHabitText, days, pushNotificationBool.isChecked, userTime, "")
     }
 
+    public fun saveHabitName(name : String){
+        habitName = name
+    }
+
+    public fun updateHabit(){
+        habit.deleteHabit(habitName!!)
+        insertToDB()
+
+    }
 }
 

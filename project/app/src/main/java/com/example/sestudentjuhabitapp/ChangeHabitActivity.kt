@@ -22,7 +22,7 @@ class ChangeHabitActivity : AppCompatActivity() {
         val fm: FragmentManager = supportFragmentManager
         val fragment: EditHabitFragment =
             fm.findFragmentById(R.id.edit_fragment_container_view) as EditHabitFragment
-
+        fragment.saveHabitName(habitName!!)
         val changeHabitBtn = findViewById<Button>(R.id.change_button)
         val deleteHabitBtn = findViewById<Button>(R.id.delete_button)
 
@@ -44,8 +44,7 @@ class ChangeHabitActivity : AppCompatActivity() {
             alert.show()
         }
         changeHabitBtn.setOnClickListener() {
-            fragment.insertToDB()
-            habit.deleteHabit(habitName!!)
+            fragment.updateHabit()
             finish()
         }
     }

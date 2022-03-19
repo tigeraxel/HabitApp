@@ -48,7 +48,7 @@
         app:layout_constraintTop_toTopOf="@+id/createEmailEditText" />
 
     <Button
-        android:id="@+id/btnCreate"
+        android:id="@+id/btnLogin"
         android:layout_width="228dp"
         android:layout_height="77dp"
         android:layout_marginTop="48dp"
@@ -67,7 +67,7 @@
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 
     <com.google.android.material.textfield.TextInputEditText

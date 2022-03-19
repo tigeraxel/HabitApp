@@ -11,13 +11,13 @@ import android.widget.Toast
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.internal.Objects
 import com.google.firebase.auth.GoogleAuthProvider
 
 
@@ -35,11 +35,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance();
 
-        val btnLogin = findViewById<Button>(R.id.btnCreate)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnCreateAccount = findViewById<Button>(R.id.createAccountButton)
         val loginEmail = findViewById<EditText>(R.id.loginEmailEditText)
         val loginPassword = findViewById<EditText>(R.id.loginPasswordEditText)
         val btnGoogleSignIn = findViewById<com.google.android.gms.common.SignInButton>(R.id.btnGoogleSignIn)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -56,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, createAccountActivity::class.java))
         }
         btnLogin.setOnClickListener {
-
+        progressBar.visibility = View.VISIBLE
             mAuth!!.signInWithEmailAndPassword(
                 loginEmail.getText().toString(),
                 loginPassword.getText().toString()
@@ -67,6 +69,8 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
+                        progressBar.visibility = View.INVISIBLE
+
                         val userID = mAuth!!.currentUser!!.providerId
                         startActivity(
                             Intent(this, MainActivity::class.java).putExtra(
@@ -77,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                         )
                         finish()
                     } else {
+                        progressBar.visibility = View.INVISIBLE
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(

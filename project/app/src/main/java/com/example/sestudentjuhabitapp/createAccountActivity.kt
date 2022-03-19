@@ -19,7 +19,7 @@ class createAccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_account)
         mAuth = FirebaseAuth.getInstance();
 
-        val btnCreate = findViewById<Button>(R.id.btnCreate)
+        val btnCreate = findViewById<Button>(R.id.btnLogin)
         val btnLoginToAccount = findViewById<Button>(R.id.btnLoginToAccount)
         val createEmail = findViewById<EditText>(R.id.createEmailEditText)
         val createPassword = findViewById<EditText>(R.id.createPasswordEditText)

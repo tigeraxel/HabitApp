@@ -33,7 +33,7 @@
     <string name="change_delete_habit_popup_detail_text">Are you sure you want to delete?</string>
 
     <!-- Fragment reused in Create and Change -->
-    <string name="fragment_new_habit_textview_text">Name of Habit:</string>
+    <string name="fragment_new_habit_textview_text">Name of Habit</string>
     <string name="fragment_new_habit_edittext_hint_text">Habit name</string>
     <string name="fragment_set_period_textview_text">How Often?</string>
     <string name="fragment_set_time_textview_text">What time?</string>
@@ -53,9 +53,7 @@
     <string name="custom_calendar_confirm_button_text">Of Course!</string>
     <string name="email">Email:</string>
     <string name="submit">Submit</string>
-    <string name="email">Email:</string>
     <string name="which_habit">Which Habit</string>
-    <string name="challenge_a_friend">Challenge A Friend</string>
     <string name="enter_friends_email">Enter friends email</string>
     <string name="enter_habit_name">Enter habit name</string>
     <string name="login">Login</string>
@@ -69,8 +67,25 @@
     <string name="change_email">Change email</string>
     <string name="change_password">Change password</string>
     <string name="example_gmail_com">example@gmail.com</string>
-    <string name="password">Password</string>
     <string name="new_password">New password</string>
     <string name="change">Change</string>
     <string name="logout">Logout</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="challenge_request">You have been challenged!</string>
+    <string name="have_challenged_you">have challenged you!</string>
+    <string name="The_name_of_the_challenge_is">The name of the challenge is</string>
+    <string name="The_challenge_is_done_on">The challenge is done on</string>
+    <string name="The_time_everyday_is">The time everyday is</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="notifications_is_on">Notifications is on</string>
+    <string name="notifications_is_off">Notifications is off</string>
+    <string name="accept">accept</string>
+    <string name="deny">deny</string>
 </resources>

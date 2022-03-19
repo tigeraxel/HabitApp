@@ -78,47 +78,50 @@ class MainActivity : AppCompatActivity() {
                         val dialogBuilder = AlertDialog.Builder(this)
                         var arrayOfDays = arrayListOf<String>()
                         if (reqHabit!!.days!!["monday"] == true)
-                            arrayOfDays.add("monday")
+                            arrayOfDays.add(getString(R.string.monday))
                         if (reqHabit!!.days!!["tuesday"] == true)
-                            arrayOfDays.add("tuesday")
+                            arrayOfDays.add(getString(R.string.tuesday))
                         if (reqHabit!!.days!!["wednesday"] == true)
-                            arrayOfDays.add("wednesday")
+                            arrayOfDays.add(getString(R.string.wednesday))
                         if (reqHabit!!.days!!["thursday"] == true)
-                            arrayOfDays.add("thursday")
+                            arrayOfDays.add(getString(R.string.thursday))
                         if (reqHabit!!.days!!["friday"] == true)
-                            arrayOfDays.add("friday")
+                            arrayOfDays.add(getString(R.string.friday))
                         if (reqHabit!!.days!!["saturday"] == true)
-                            arrayOfDays.add("saturday")
+                            arrayOfDays.add(getString(R.string.saturday))
                         if (reqHabit!!.days!!["sunday"] == true)
-                            arrayOfDays.add("sunday")
+                            arrayOfDays.add(getString(R.string.sunday))
                         var Days = arrayOfDays.toString().replace("[", "")
                         Days = Days.replace("]", "")
                         var Notification = ""
                         if (reqHabit.pushNotification == true)
-                            Notification = "Notifications is on"
-                        else Notification = "Notifications is off"
+                            Notification = getString(R.string.notifications_is_on)
+                        else Notification = getString(R.string.notifications_is_off)
 
-
+                        val haveChallengeYou = resources.getString(R.string.have_challenged_you);
+                        val theNameOfTheChallengeIs = resources.getString(R.string.The_name_of_the_challenge_is);
+                        val theChallengeIsDoneOn = resources.getString(R.string.The_challenge_is_done_on);
+                        val theTimeEverydayIs = resources.getString(R.string.The_time_everyday_is);
 
                         dialogBuilder.setMessage(
-                            " ${reqHabit!!.challenger} have challenged you!" + "\n" +
-                                    "The name of the challenge is ${reqHabit!!.name}" + "\n" +
-                                    "The challenge is done on $Days" + "\n" +
-                                    "The time everday is ${reqHabit!!.time}" + "\n" +
-                                    " $Notification"
+                            "${reqHabit!!.challenger} " + haveChallengeYou + "\n" +
+                                    theNameOfTheChallengeIs + " ${reqHabit!!.name}" + "\n" +
+                                    theChallengeIsDoneOn +" $Days" + "\n" +
+                                    theTimeEverydayIs + " ${reqHabit!!.time}" + "\n" +
+                                    "$Notification"
                         )
                             // if the dialog is cancelable
                             .setCancelable(false)
                             // positive button text and action
                             .setPositiveButton(
-                                "accept",
+                                getString(R.string.accept),
                                 DialogInterface.OnClickListener { dialog, id ->
                                     habit.acceptChallenge(reqHabit.name!!)
                                     dialog.cancel()
                                 })
                             // negative button text and action
                             .setNegativeButton(
-                                "deny",
+                                getString(R.string.deny),
                                 DialogInterface.OnClickListener { dialog, id ->
                                     habit.deleteChallenge(reqHabit.name!!)
                                     dialog.cancel()
@@ -127,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                         // create dialog box
                         val alert = dialogBuilder.create()
                         // set title for alert dialog box
-                        alert.setTitle("Challenge Request")
+                        alert.setTitle(getString(R.string.challenge_request))
                         // show alert dialog
                         alert.show()
                     }

@@ -122,8 +122,8 @@
         android:layout_height="wrap_content"
         android:minHeight="50dp"
         android:showText="true"
-        android:textOff="Dark"
-        android:textOn="Light"
+        android:textOff="@string/settings_dark_mode_switch_text"
+        android:textOn="@string/settings_light_mode_switch_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsLightModesText" />

@@ -7,10 +7,12 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import android.content.Intent
+import java.util.ArrayList
 
 
 class ChangeHabitActivity : AppCompatActivity() {
     val habit = HabitClass()
+    val validation = ValidationClass()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +46,15 @@ class ChangeHabitActivity : AppCompatActivity() {
             alert.show()
         }
         changeHabitBtn.setOnClickListener() {
-            fragment.updateHabit()
-            finish()
+            var errors: ArrayList<String> = fragment.returnValidationErrors()
+            if (errors.isEmpty()) {
+                fragment.updateHabit()
+                finish()
+            } else {
+                validation.showValidationErrors(errors,this)
+            }
         }
     }
+
 
 }

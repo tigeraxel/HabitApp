@@ -14,11 +14,6 @@
     <string name="home_habit_calendar_button_text">Habit-Calendar</string>
 
     <!-- Settings Screen -->
-    <string name="settings_change_username_textview_text">Change Username:</string>
-    <string name="settings_change_username_edittext_hint_text">New Username</string>
-    <string name="settings_change_password_textview_text">Change Password:</string>
-    <string name="settings_change_password_edittext_hint_text">New Password</string>
-    <string name="settings_repeat_password_edittext_hint_text">Repeat Username</string>
     <string name="settings_change_button_text">Change!</string>
     <string name="settings_light_mode_switch_text">Light</string>
     <string name="settings_dark_mode_switch_text">Dark</string>
@@ -88,4 +83,16 @@
     <string name="notifications_is_off">Notifications is off</string>
     <string name="accept">accept</string>
     <string name="deny">deny</string>
+    <string name="title_too_long">Title should be max</string>
+    <string name="title_too_short">Title should be atleast</string>
+    <string name="error">Error</string>
+    <string name="choose_a_day">Choose a day</string>
+    <string name="choose_a_time">Choose a time</string>
+    <string name="characters">characters</string>
+    <string name="the_email_should_be_max">The email should be max</string>
+    <string name="the_email_should_be_min">The email should be min</string>
+    <string name="the_title_of_the_habit_should_max_be">The title of the habit should max be</string>
+    <string name="the_title_of_the_habit_should_min_be">The title of the habit should min be</string>
+    <string name="the_password_should_be_max">The password should be max</string>
+    <string name="the_password_should_be_min">The password should be min</string>
 </resources>

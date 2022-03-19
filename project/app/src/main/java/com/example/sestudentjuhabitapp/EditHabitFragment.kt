@@ -2,19 +2,22 @@ package com.example.sestudentjuhabitapp
 
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.ktx.getValue
 import java.util.*
-import kotlin.properties.Delegates
+import kotlin.collections.ArrayList
 
 class EditHabitFragment : Fragment() {
+    val validation = ValidationClass()
+    val maxHabitTitleLength = validation.maxHabitTitleLength
+    val minHabitTitleLength = validation.minHabitTitleLength
+
+
     val habit = HabitClass()
     lateinit var titleOfHabit: EditText
     lateinit var selectMondayBtn: ToggleButton
@@ -110,6 +113,43 @@ class EditHabitFragment : Fragment() {
     public fun insertToDB() {
         var titleOfHabitText = titleOfHabit.text.toString()
 
+        var days = returnDays()
+
+        habit.insertHabit(titleOfHabitText, days, pushNotificationBool.isChecked, userTime, "")
+    }
+
+    public fun saveHabitName(name : String){
+        habitName = name
+    }
+
+    public fun updateHabit(){
+        habit.deleteHabit(habitName!!)
+        insertToDB()
+
+    }
+
+    public fun returnValidationErrors() : ArrayList<String>{
+        var errorsArray = ArrayList<String>()
+        if(titleOfHabit.text.length > maxHabitTitleLength)
+            errorsArray.add(getString(R.string.title_too_long) + " " + maxHabitTitleLength.toString() + " " + getString(
+                            R.string.characters)  + "\n")
+
+        if(titleOfHabit.text.length < minHabitTitleLength)
+            errorsArray.add(getString(R.string.title_too_short) + " " + minHabitTitleLength.toString() + " " + getString(
+                R.string.characters) + "\n")
+
+        var days = returnDays()
+
+        if(days.isEmpty())
+            errorsArray.add(getString(R.string.choose_a_day) + "\n")
+
+        if(userTime == "")
+            errorsArray.add(getString(R.string.choose_a_time) + "\n" )
+
+        return errorsArray
+    }
+
+    public fun returnDays() : HashMap<String, Boolean>{
         var days = HashMap<String, Boolean>()
         if (selectMondayBtn!!.isChecked())
             days.put("monday", true)
@@ -126,17 +166,7 @@ class EditHabitFragment : Fragment() {
         if (selectSundayBtn!!.isChecked())
             days.put("sunday", true)
 
-        habit.insertHabit(titleOfHabitText, days, pushNotificationBool.isChecked, userTime, "")
-    }
-
-    public fun saveHabitName(name : String){
-        habitName = name
-    }
-
-    public fun updateHabit(){
-        habit.deleteHabit(habitName!!)
-        insertToDB()
-
+        return days
     }
 }
 

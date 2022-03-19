@@ -22,9 +22,19 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginActivity : AppCompatActivity() {
+    val validation = ValidationClass()
+    val maxEmailLength = validation.maxEmailLength
+    val minEmailLength = validation.minEmailLength
+    val minPasswordLength = validation.minPasswordLength
+    val maxPasswordLength = validation.maxPasswordLength
 
     private var mAuth: FirebaseAuth? = null
     private lateinit var googleSignInClient: GoogleSignInClient
+
+
+
+    lateinit var loginEmail : EditText
+    lateinit var loginPassword : EditText
 
     companion object{
         private const val RC_SIGN_IN = 420;
@@ -35,10 +45,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance();
 
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnLogin = findViewById<Button>(R.id.btnCreate)
         val btnCreateAccount = findViewById<Button>(R.id.createAccountButton)
-        val loginEmail = findViewById<EditText>(R.id.loginEmailEditText)
-        val loginPassword = findViewById<EditText>(R.id.loginPasswordEditText)
+        loginEmail = findViewById(R.id.loginEmailEditText)
+        loginPassword = findViewById(R.id.loginPasswordEditText)
         val btnGoogleSignIn = findViewById<com.google.android.gms.common.SignInButton>(R.id.btnGoogleSignIn)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
@@ -58,41 +68,47 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, createAccountActivity::class.java))
         }
         btnLogin.setOnClickListener {
-        progressBar.visibility = View.VISIBLE
-            mAuth!!.signInWithEmailAndPassword(
-                loginEmail.getText().toString(),
-                loginPassword.getText().toString()
-            )
-                .addOnCompleteListener(
-                    this
-                ) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        progressBar.visibility = View.INVISIBLE
+            progressBar.visibility = View.VISIBLE
+            var errors = returnValidationErrors()
+            if (errors.isEmpty()) {
+                mAuth!!.signInWithEmailAndPassword(
+                    loginEmail.getText().toString(),
+                    loginPassword.getText().toString()
+                )
+                    .addOnCompleteListener(
+                        this
+                    ) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success")
+                            progressBar.visibility = View.INVISIBLE
 
-                        val userID = mAuth!!.currentUser!!.providerId
-                        startActivity(
-                            Intent(this, MainActivity::class.java).putExtra(
-                                "userID",
-                                userID
+                            val userID = mAuth!!.currentUser!!.providerId
+                            startActivity(
+                                Intent(this, MainActivity::class.java).putExtra(
+                                    "userID",
+                                    userID
+                                )
+
                             )
+                            finish()
+                        } else {
+                            progressBar.visibility = View.INVISIBLE
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                            Toast.makeText(
+                                this@LoginActivity, "Authentication failed.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            updateUI(null)
+                        }
 
-                        )
-                        finish()
-                    } else {
-                        progressBar.visibility = View.INVISIBLE
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            this@LoginActivity, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        updateUI(null)
+                        // ...
                     }
-
-                    // ...
-                }
+            }
+            else{
+                validation.showValidationErrors(errors,this)
+            }
         }
 
 
@@ -169,5 +185,39 @@ class LoginActivity : AppCompatActivity() {
     fun updateUI(user: FirebaseUser?) {
 
         return
+    }
+
+
+
+    fun returnValidationErrors(): ArrayList<String> {
+        var errorsArray = ArrayList<String>()
+        if (loginEmail.text.length > maxEmailLength)
+            errorsArray.add(
+                getString(R.string.the_email_should_be_max) + " " + maxEmailLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
+        if (loginEmail.text.length < minEmailLength)
+            errorsArray.add(
+                getString(R.string.the_email_should_be_min) + " " + minEmailLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
+
+        if (loginPassword.text.length > maxPasswordLength)
+            errorsArray.add(
+                getString(R.string.the_password_should_be_max) + " " + maxPasswordLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
+
+        if (loginPassword.text.length < minPasswordLength)
+            errorsArray.add(
+                getString(R.string.the_password_should_be_min) + " " + minPasswordLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
+
+        return errorsArray
     }
 }

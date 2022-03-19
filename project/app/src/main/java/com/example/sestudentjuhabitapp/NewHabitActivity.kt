@@ -21,6 +21,7 @@ import java.util.*
 const val MAX_INPUT_SIZE = 50 // The maximum length of the name of a habit, arbitrary number.
 
 class NewHabitActivity : AppCompatActivity() {
+    val validation = ValidationClass()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,28 +40,22 @@ class NewHabitActivity : AppCompatActivity() {
         createHabitButton.setOnClickListener {
             val fragment: EditHabitFragment =
                 fm.findFragmentById(R.id.create_fragment_container_view) as EditHabitFragment
-            fragment.insertToDB()
-            finish()
+            var errors: ArrayList<String> = fragment.returnValidationErrors()
+            if(errors.isEmpty()) {
+                fragment.insertToDB()
+                finish()
+            }
+            else{
+                validation.showValidationErrors(errors,this)
+            }
         }
     }
+
 
 //if you added fragment via layout xml
 
 
 
 
-private fun displayInputErrorMessage() { // Debug: safe to use, no crashes.
-
-    val displayErrorDialog = AlertDialog.Builder(this)
-    displayErrorDialog.setCancelable(false)
-        .setNegativeButton(R.string.ok, DialogInterface.OnClickListener { dialog, _ ->
-            dialog.cancel()
-        })
-        .setMessage(R.string.input_string_error_description)
-
-    val alert = displayErrorDialog.create()
-    alert.setTitle(R.string.input_string_error_title)
-    alert.show()
-}
 }
 

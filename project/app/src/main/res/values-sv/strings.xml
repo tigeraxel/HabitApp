@@ -70,4 +70,16 @@
     <string name="notifications_is_off">Notifikationer är av</string>
     <string name="accept">acceptera</string>
     <string name="deny">neka</string>
+    <string name="title_too_long">Titeln borde vara max</string>
+    <string name="title_too_short">Titeln borde vara min</string>
+    <string name="error">Fel</string>
+    <string name="choose_a_day">Välj en dag</string>
+    <string name="choose_a_time">Välj en tid</string>
+    <string name="characters">tecken</string>
+    <string name="the_email_should_be_max">Eposten borde vara max</string>
+    <string name="the_email_should_be_min">Eposten borde vara min</string>
+    <string name="the_title_of_the_habit_should_max_be">Titeln på vanan borde vara max</string>
+    <string name="the_title_of_the_habit_should_min_be">Titeln på vanan borde vara min</string>
+    <string name="the_password_should_be_max">Lösenordet borde vara max</string>
+    <string name="the_password_should_be_min">Lösenordet borde vara min</string>
 </resources>

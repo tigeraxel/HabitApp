@@ -1,6 +1,5 @@
 package com.example.sestudentjuhabitapp
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,9 +31,9 @@ class HabitClass {
         time: String,
         challenger: String
     ) {
-        val userReference = database.getReference("users").child(email).child("Habits")
+        val habitsReference = database.getReference("users").child(email).child("Habits")
         var newHabit = HabitData(name, days, pushNotification, time, challenger)
-        userReference.child(name).setValue(newHabit)
+        habitsReference.child(name).setValue(newHabit)
 
     }
 

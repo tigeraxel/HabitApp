@@ -13,7 +13,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:fontFamily="@font/rowdies"
-        android:text="LightMode - DarkMode:"
+        android:text="@string/lightmode_darkmode"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/rowdies_bold"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textColor="@color/HabitColor"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,13 +33,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/settingsUsernameText"
+        android:id="@+id/settingsEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/rowdies"
-        android:text="Change Username:"
+        android:text="@string/change_email"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsTextTitle" />
@@ -51,7 +51,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/rowdies"
-        android:text="Change Password:"
+        android:text="@string/change_password"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsUsernameInput" />
@@ -63,13 +63,13 @@
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/settingsUsernameText"
-        app:layout_constraintTop_toBottomOf="@+id/settingsUsernameText">
+        app:layout_constraintStart_toStartOf="@+id/settingsEmailText"
+        app:layout_constraintTop_toBottomOf="@+id/settingsEmailText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Username1234" />
+            android:hint="@string/example_gmail_com" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,7 +85,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -102,7 +102,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="New Password" />
+            android:hint="@string/new_password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/rowdies_bold"
-        android:text="Change"
+        android:text="@string/change"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

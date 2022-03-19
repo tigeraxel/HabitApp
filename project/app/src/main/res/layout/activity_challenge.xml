@@ -11,7 +11,7 @@
         android:layout_width="228dp"
         android:layout_height="77dp"
         android:layout_marginTop="40dp"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -19,12 +19,12 @@
         app:layout_constraintTop_toBottomOf="@+id/habitNameEditText" />
 
     <TextView
-        android:id="@+id/challengeUsernameText"
+        android:id="@+id/challengeEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/rowdies"
-        android:text="Username:"
+        android:text="@string/email"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/rowdies"
-        android:text="Which Habit"
+        android:text="@string/which_habit"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/rowdies_bold"
-        android:text="Challenge A Friend"
+        android:text="@string/challenge_a_friend"
         android:textColor="@color/HabitColor"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,17 +63,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Friend Username"
+        android:hint="@string/enter_friends_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challengeUsernameText" />
+        app:layout_constraintTop_toBottomOf="@+id/challengeEmailText" />
 
     <EditText
         android:id="@+id/habitNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="Enter HabitName"
+        android:hint="@string/enter_habit_name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"

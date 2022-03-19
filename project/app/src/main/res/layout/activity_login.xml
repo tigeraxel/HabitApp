@@ -26,7 +26,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/rowdies"
-        android:text="Email:"
+        android:text="@string/email"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTextTitle" />
@@ -38,7 +38,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/rowdies"
-        android:text="Password:"
+        android:text="@string/password"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailEditText" />
@@ -48,7 +48,7 @@
         android:id="@+id/loginEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/login"
         android:textColor="?android:textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailText"
         tools:layout_editor_absoluteX="16dp" />
@@ -57,7 +57,7 @@
         android:id="@+id/loginPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColor="?android:textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordText"
         tools:layout_editor_absoluteX="0dp" />
@@ -67,7 +67,7 @@
         android:layout_width="228dp"
         android:layout_height="77dp"
         android:layout_marginTop="16dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -88,7 +88,7 @@
         android:id="@+id/createAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I want to Register"
+        android:text="@string/i_want_to_register"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

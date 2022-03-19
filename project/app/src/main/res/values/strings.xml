@@ -47,4 +47,8 @@
     <string name="fragment_friday_text">F</string>
     <string name="fragment_saturday_text">S</string>
     <string name="fragment_sunday_text">S</string>
+
+    <!-- Custom calendar strings -->
+    <string name="custom_calendar_done_habit_text">Have you done this today?</string>
+    <string name="custom_calendar_confirm_button_text">Of Course!</string>
 </resources>

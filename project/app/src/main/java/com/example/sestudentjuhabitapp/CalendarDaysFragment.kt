@@ -9,13 +9,13 @@ import android.widget.Button
 
 class CalendarDaysFragment : Fragment() {
 
-    var mondayState = false
-    var tuesdayState = false
-    var wednesdayState = false
-    var thursdayState = false
-    var fridayState = false
-    var saturdayState = false
-    var sundayState = false
+    private var mondayState = false
+    private var tuesdayState = false
+    private var wednesdayState = false
+    private var thursdayState = false
+    private var fridayState = false
+   private var saturdayState = false
+   private var sundayState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,39 +32,39 @@ class CalendarDaysFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_calendar_days, container, false)
+    ): View = inflater.inflate(R.layout.fragment_calendar_days, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(mondayState) {
+        if(!mondayState) {
             val mondayBtn = view.findViewById<Button>(R.id.calendar_fragment_monday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                mondayBtn.setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
-        if(tuesdayState) {
+        if(!tuesdayState) {
             val tuesdayBtn = view.findViewById<Button>(R.id.calendar_fragment_tuesday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
-        if(wednesdayState) {
+        if(!wednesdayState) {
             val wednesdayBtn = view.findViewById<Button>(R.id.calendar_fragment_wednesday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
-        if(thursdayState) {
+        if(!thursdayState) {
             val thursdayBtn = view.findViewById<Button>(R.id.calendar_fragment_thursday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
-        if(fridayState) {
+        if(!fridayState) {
             val fridayBtn = view.findViewById<Button>(R.id.calendar_fragment_friday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
-        if(saturdayState) {
+        if(!saturdayState) {
             val saturdayBtn = view.findViewById<Button>(R.id.calendar_fragment_saturday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
             //saturdayBtn.visibility = View.INVISIBLE // Set to invisible
         }
-        if(sundayState) {
+        if(!sundayState) {
             val sundayBtn = view.findViewById<Button>(R.id.calendar_fragment_sunday_button)
-                .setBackgroundColor(R.color.teal_700.toInt())
+                .setBackgroundColor(R.color.HabitColorSecondary.toInt())
         }
     }
 

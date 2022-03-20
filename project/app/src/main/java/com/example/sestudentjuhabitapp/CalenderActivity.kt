@@ -6,46 +6,128 @@ To set which days are selected or not, call the constructor: "CalendarDaysFragme
 Where the days fetched from the database.
  */
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.AttributeSet
+import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.CalendarView
+import android.widget.ListView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 
 class CalenderActivity : AppCompatActivity() {
+
+    val habit = HabitClass()
+    private var mAuth = FirebaseAuth.getInstance();
+    private val database = Firebase.database
+    private var email = mAuth.currentUser?.email.toString().replace(".", "")
+    lateinit var habitsRef: DatabaseReference
+    lateinit var habitList: MutableList<HabitData>
+
+    private var mondayState = false
+    private var tuesdayState = false
+    private var wednesdayState = false
+    private var thursdayState = false
+    private var fridayState = false
+    private var saturdayState = false
+    private var sundayState = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calender)
 
-        // The dropdown dialog, fill with list of habits from DB.
-        val exampleStrings = arrayOf("test1", "test3", "cant count?", "hej", "test2")
-        val adapter : ArrayAdapter<String> = // Todo: Fill with names from the database.
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, exampleStrings)
-        val selectHabitDialog = findViewById<Spinner>(R.id.custom_calendar_spinner_dialog)
-        selectHabitDialog.adapter = adapter
-        
+        val habitName = intent.getStringExtra("habitName") // Find which habit was selected.
 
-        // Todo: change all bools below to actual data from the database:
-        
-        val daysFragment = CalendarDaysFragment // Set which days are selected and which are not:
-            .newInstance(true, false, false, true, false, true, true)
-        val daysFragment1 = CalendarDaysFragment
-            .newInstance(true, false, false, true, false, true, true)
-        val daysFragment2 = CalendarDaysFragment
-            .newInstance(true, false, false, true, false, true, true)
-        val daysFragment3 = CalendarDaysFragment
-            .newInstance(true, false, false, true, false, true, true)
-        val daysFragment4 = CalendarDaysFragment
-            .newInstance(true, false, false, true, false, true, true)
+        var currentHabit = habit.getHabit(habitName!!) // Check which days are selected:
+            .addOnSuccessListener {
+                val currentHabit = it.getValue<HabitData>()!!
+                if (currentHabit.days?.get("monday") == true)
+                    mondayState = true
+                if (currentHabit.days?.get("tuesday") == true)
+                    tuesdayState = true
+                if (currentHabit.days?.get("wednesday") == true)
+                    wednesdayState = true
+                if (currentHabit.days?.get("thursday") == true)
+                    thursdayState = true
+                if (currentHabit.days?.get("friday") == true)
+                    fridayState = true
+                if (currentHabit.days?.get("saturday") == true)
+                    saturdayState = true
+                if (currentHabit.days?.get("sunday") == true)
+                    sundayState = true
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.custom_row1_fragment_container, daysFragment)
-            .add(R.id.custom_row2_fragment_container, daysFragment1)
-            .add(R.id.custom_row3_fragment_container, daysFragment2)
-            .add(R.id.custom_row4_fragment_container, daysFragment3)
-            .add(R.id.custom_row5_fragment_container, daysFragment4)
-            .commit()
+                val daysFragment =
+                    CalendarDaysFragment // Set which days to be displayed as selected and which are not:
+                        .newInstance(
+                            mondayState,
+                            tuesdayState,
+                            wednesdayState,
+                            thursdayState,
+                            fridayState,
+                            saturdayState,
+                            sundayState
+                        )
+                val daysFragment1 = CalendarDaysFragment
+                    .newInstance(
+                        mondayState,
+                        tuesdayState,
+                        wednesdayState,
+                        thursdayState,
+                        fridayState,
+                        saturdayState,
+                        sundayState
+                    )
+                val daysFragment2 = CalendarDaysFragment
+                    .newInstance(
+                        mondayState,
+                        tuesdayState,
+                        wednesdayState,
+                        thursdayState,
+                        fridayState,
+                        saturdayState,
+                        sundayState
+                    )
+                val daysFragment3 = CalendarDaysFragment
+                    .newInstance(
+                        mondayState,
+                        tuesdayState,
+                        wednesdayState,
+                        thursdayState,
+                        fridayState,
+                        saturdayState,
+                        sundayState
+                    )
+                val daysFragment4 = CalendarDaysFragment
+                    .newInstance(
+                        mondayState,
+                        tuesdayState,
+                        wednesdayState,
+                        thursdayState,
+                        fridayState,
+                        saturdayState,
+                        sundayState
+                    )
+
+                supportFragmentManager // Create all the fragments, with the correct days highlighted:
+                    .beginTransaction()
+                    .add(R.id.custom_row1_fragment_container, daysFragment)
+                    .add(R.id.custom_row2_fragment_container, daysFragment1)
+                    .add(R.id.custom_row3_fragment_container, daysFragment2)
+                    .add(R.id.custom_row4_fragment_container, daysFragment3)
+                    .add(R.id.custom_row5_fragment_container, daysFragment4)
+                    .commit()
+            }
     }
 }

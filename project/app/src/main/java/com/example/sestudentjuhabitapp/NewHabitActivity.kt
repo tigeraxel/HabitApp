@@ -54,7 +54,10 @@ class NewHabitActivity : AppCompatActivity() {
 
 //if you added fragment via layout xml
 
+fun setAlarm(time : String){
 
+
+}
 
 
 }

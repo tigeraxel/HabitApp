@@ -154,7 +154,29 @@ class MainActivity : AppCompatActivity() {
                     listView.setOnItemClickListener { parent, view, position, id ->
 
                         var selectedHabit = habitList[position]
-                        changeHabitIntent(selectedHabit.name!!)
+
+                        // Alert dialog that allows the user to select if they want to edit or view the habit in a calendar view
+                        val selectActionDialog = AlertDialog.Builder(this@MainActivity)
+                        selectActionDialog.setMessage(R.string.selected_habit_popup_text)
+                        selectActionDialog.setCancelable(true)
+                        selectActionDialog.setPositiveButton(R.string.select_edit_habit,
+                            DialogInterface.OnClickListener { _, _ ->
+                                val changeHabitIntent = Intent(this@MainActivity,ChangeHabitActivity::class.java)
+                                changeHabitIntent.putExtra("habitName", selectedHabit.name!!)
+                                startActivity(changeHabitIntent)
+                            })
+
+                        selectActionDialog.setNegativeButton(R.string.select_show_in_calendar,
+                            DialogInterface.OnClickListener { _, _ ->
+                            val habitCalendarIntent = Intent(this@MainActivity,CalenderActivity::class.java)
+                            habitCalendarIntent.putExtra("habitName", selectedHabit.name!!)
+                            startActivity(habitCalendarIntent)
+                        })
+
+                        val alert = selectActionDialog.create()
+                        alert.show()
+
+                        //changeHabitIntent(selectedHabit.name!!)
 
                         // The item that was clicked
                         // val intent = Intent(this, BookDetailActivity::class.java)

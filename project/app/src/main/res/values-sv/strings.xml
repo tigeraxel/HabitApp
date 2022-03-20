@@ -82,4 +82,7 @@
     <string name="the_title_of_the_habit_should_min_be">Titeln på vanan borde vara min</string>
     <string name="the_password_should_be_max">Lösenordet borde vara max</string>
     <string name="the_password_should_be_min">Lösenordet borde vara min</string>
+    <string name="selected_habit_popup_text">Vad vill du göra med denna vana?</string>
+    <string name="select_edit_habit">Redigera</string>
+    <string name="select_show_in_calendar">Visa i kalender</string>
 </resources>

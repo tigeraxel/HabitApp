@@ -46,6 +46,9 @@
     <!-- Custom calendar strings -->
     <string name="custom_calendar_done_habit_text">Have you done this today?</string>
     <string name="custom_calendar_confirm_button_text">Of Course!</string>
+    <string name="selected_habit_popup_text">What do you want to do with this habit?</string>
+    <string name="select_edit_habit">Edit</string>
+    <string name="select_show_in_calendar">Show in Calendar</string>
     <string name="email">Email:</string>
     <string name="submit">Submit</string>
     <string name="which_habit">Which Habit</string>

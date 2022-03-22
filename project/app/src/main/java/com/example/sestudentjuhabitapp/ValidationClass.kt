@@ -16,7 +16,7 @@ class ValidationClass {
     val maxHabitTitleLength = 24
     val minHabitTitleLength = 2
 
-   public fun showValidationErrors(errors: ArrayList<String> ,context: Context) {
+    public fun showValidationErrors(errors: ArrayList<String>, context: Context) {
 
         val dialogBuilder = android.app.AlertDialog.Builder(context)
         var errorText = ""

@@ -51,7 +51,7 @@ class ChangeHabitActivity : AppCompatActivity() {
                 fragment.updateHabit()
                 finish()
             } else {
-                validation.showValidationErrors(errors,this)
+                validation.showValidationErrors(errors, this)
             }
         }
     }

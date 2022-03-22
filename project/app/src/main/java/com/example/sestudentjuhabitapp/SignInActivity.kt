@@ -11,7 +11,6 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
 
-
         val btnCreateAccount = findViewById<Button>(R.id.btnCreateAccount)
         btnCreateAccount.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

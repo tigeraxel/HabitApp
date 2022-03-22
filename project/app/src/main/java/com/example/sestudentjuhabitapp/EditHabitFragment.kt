@@ -27,9 +27,9 @@ class EditHabitFragment : Fragment() {
     lateinit var selectFridayBtn: ToggleButton
     lateinit var selectSaturdayBtn: ToggleButton
     lateinit var selectSundayBtn: ToggleButton
-    lateinit var pushNotificationBool : Switch
+    lateinit var pushNotificationBool: Switch
     lateinit var selectTimeButton: Button
-    var habitName : String = ""
+    var habitName: String = ""
     // Create variables here to store any desired data on creation. startValue example:
     //var startValue = 0
 
@@ -63,27 +63,27 @@ class EditHabitFragment : Fragment() {
         selectTimeButton = view.findViewById(R.id.fragment_timepicker_button)
 
 
-        if(habitName != ""){
+        if (habitName != "") {
             var currentHabit = habit.getHabit(habitName)
                 .addOnSuccessListener {
                     val currentHabit = it.getValue<HabitData>()!!
                     titleOfHabit.setText(currentHabit.name)
-                    if(currentHabit.days?.get("monday") == true)
+                    if (currentHabit.days?.get("monday") == true)
                         selectMondayBtn.isChecked = true
-                    if(currentHabit.days?.get("tuesday") == true)
+                    if (currentHabit.days?.get("tuesday") == true)
                         selectTuesdayBtn.isChecked = true
-                    if(currentHabit.days?.get("wednesday") == true)
+                    if (currentHabit.days?.get("wednesday") == true)
                         selectWednesdayBtn.isChecked = true
-                    if(currentHabit.days?.get("thursday") == true)
+                    if (currentHabit.days?.get("thursday") == true)
                         selectThursdayBtn.isChecked = true
-                    if(currentHabit.days?.get("friday") == true)
+                    if (currentHabit.days?.get("friday") == true)
                         selectFridayBtn.isChecked = true
-                    if(currentHabit.days?.get("saturday") == true)
+                    if (currentHabit.days?.get("saturday") == true)
                         selectSaturdayBtn.isChecked = true
-                    if(currentHabit.days?.get("sunday") == true)
+                    if (currentHabit.days?.get("sunday") == true)
                         selectSundayBtn.isChecked = true
                     userTime = currentHabit.time!!
-                    if(currentHabit.pushNotification == true)
+                    if (currentHabit.pushNotification == true)
                         pushNotificationBool.isChecked = true
                 }
             Log.d("EditHabitFragment", currentHabit.toString())
@@ -118,38 +118,44 @@ class EditHabitFragment : Fragment() {
         habit.insertHabit(titleOfHabitText, days, pushNotificationBool.isChecked, userTime, "")
     }
 
-    public fun saveHabitName(name : String){
+    public fun saveHabitName(name: String) {
         habitName = name
     }
 
-    public fun updateHabit(){
+    public fun updateHabit() {
         habit.deleteHabit(habitName!!)
         insertToDB()
 
     }
 
-    public fun returnValidationErrors() : ArrayList<String>{
+    public fun returnValidationErrors(): ArrayList<String> {
         var errorsArray = ArrayList<String>()
-        if(titleOfHabit.text.length > maxHabitTitleLength)
-            errorsArray.add(getString(R.string.title_too_long) + " " + maxHabitTitleLength.toString() + " " + getString(
-                            R.string.characters)  + "\n")
+        if (titleOfHabit.text.length > maxHabitTitleLength)
+            errorsArray.add(
+                getString(R.string.title_too_long) + " " + maxHabitTitleLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
 
-        if(titleOfHabit.text.length < minHabitTitleLength)
-            errorsArray.add(getString(R.string.title_too_short) + " " + minHabitTitleLength.toString() + " " + getString(
-                R.string.characters) + "\n")
+        if (titleOfHabit.text.length < minHabitTitleLength)
+            errorsArray.add(
+                getString(R.string.title_too_short) + " " + minHabitTitleLength.toString() + " " + getString(
+                    R.string.characters
+                ) + "\n"
+            )
 
         var days = returnDays()
 
-        if(days.isEmpty())
+        if (days.isEmpty())
             errorsArray.add(getString(R.string.choose_a_day) + "\n")
 
-        if(userTime == "")
-            errorsArray.add(getString(R.string.choose_a_time) + "\n" )
+        if (userTime == "")
+            errorsArray.add(getString(R.string.choose_a_time) + "\n")
 
         return errorsArray
     }
 
-    public fun returnDays() : HashMap<String, Boolean>{
+    public fun returnDays(): HashMap<String, Boolean> {
         var days = HashMap<String, Boolean>()
         if (selectMondayBtn!!.isChecked())
             days.put("monday", true)

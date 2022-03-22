@@ -41,12 +41,11 @@ class NewHabitActivity : AppCompatActivity() {
             val fragment: EditHabitFragment =
                 fm.findFragmentById(R.id.create_fragment_container_view) as EditHabitFragment
             var errors: ArrayList<String> = fragment.returnValidationErrors()
-            if(errors.isEmpty()) {
+            if (errors.isEmpty()) {
                 fragment.insertToDB()
                 finish()
-            }
-            else{
-                validation.showValidationErrors(errors,this)
+            } else {
+                validation.showValidationErrors(errors, this)
             }
         }
     }
@@ -54,10 +53,10 @@ class NewHabitActivity : AppCompatActivity() {
 
 //if you added fragment via layout xml
 
-fun setAlarm(time : String){
+    fun setAlarm(time: String) {
 
 
-}
+    }
 
 
 }

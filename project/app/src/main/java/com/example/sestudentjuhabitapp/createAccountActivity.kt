@@ -57,14 +57,14 @@ class createAccountActivity : AppCompatActivity() {
                         // If sign in fails, display a message to the user.
                         Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(
-                            this@createAccountActivity, "Google Authentication denied the email adress.",
+                            this@createAccountActivity,
+                            "Google Authentication denied the email adress.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
-            }
-            else{
-                validation.showValidationErrors(errors,this)
+            } else {
+                validation.showValidationErrors(errors, this)
             }
         }
     }

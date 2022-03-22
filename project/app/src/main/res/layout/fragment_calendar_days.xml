@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalendarDaysFragment">
@@ -11,63 +11,69 @@
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_tuesday_button"
+        android:text="@string/fragment_monday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_monday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_tuesday_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/calendar_fragment_tuesday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_monday_button"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_wednesday_button"
+        android:text="@string/fragment_tuesday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_tuesday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_wednesday_button"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_monday_button" />
+
     <Button
         android:id="@+id/calendar_fragment_wednesday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_tuesday_button"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_thursday_button"
+        android:text="@string/fragment_wednesday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_wednesday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_thursday_button"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_tuesday_button" />
+
     <Button
         android:id="@+id/calendar_fragment_thursday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_wednesday_button"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_friday_button"
+        android:text="@string/fragment_thursday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_thursday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_friday_button"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_wednesday_button" />
+
     <Button
         android:id="@+id/calendar_fragment_friday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_thursday_button"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_saturday_button"
+        android:text="@string/fragment_friday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_friday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_saturday_button"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_thursday_button" />
+
     <Button
         android:id="@+id/calendar_fragment_saturday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_friday_button"
-        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_sunday_button"
+        android:text="@string/fragment_saturday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_saturday_text"/>
+        app:layout_constraintEnd_toStartOf="@id/calendar_fragment_sunday_button"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_friday_button" />
+
     <Button
         android:id="@+id/calendar_fragment_sunday_button"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintStart_toEndOf="@id/calendar_fragment_saturday_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/fragment_sunday_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_sunday_text"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/calendar_fragment_saturday_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

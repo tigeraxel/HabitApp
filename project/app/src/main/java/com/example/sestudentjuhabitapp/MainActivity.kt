@@ -99,14 +99,16 @@ class MainActivity : AppCompatActivity() {
                         else Notification = getString(R.string.notifications_is_off)
 
                         val haveChallengeYou = resources.getString(R.string.have_challenged_you);
-                        val theNameOfTheChallengeIs = resources.getString(R.string.The_name_of_the_challenge_is);
-                        val theChallengeIsDoneOn = resources.getString(R.string.The_challenge_is_done_on);
+                        val theNameOfTheChallengeIs =
+                            resources.getString(R.string.The_name_of_the_challenge_is);
+                        val theChallengeIsDoneOn =
+                            resources.getString(R.string.The_challenge_is_done_on);
                         val theTimeEverydayIs = resources.getString(R.string.The_time_everyday_is);
 
                         dialogBuilder.setMessage(
                             "${reqHabit!!.challenger} " + haveChallengeYou + "\n" +
                                     theNameOfTheChallengeIs + " ${reqHabit!!.name}" + "\n" +
-                                    theChallengeIsDoneOn +" $Days" + "\n" +
+                                    theChallengeIsDoneOn + " $Days" + "\n" +
                                     theTimeEverydayIs + " ${reqHabit!!.time}" + "\n" +
                                     "$Notification"
                         )
@@ -161,17 +163,19 @@ class MainActivity : AppCompatActivity() {
                         selectActionDialog.setCancelable(true)
                         selectActionDialog.setPositiveButton(R.string.select_edit_habit,
                             DialogInterface.OnClickListener { _, _ ->
-                                val changeHabitIntent = Intent(this@MainActivity,ChangeHabitActivity::class.java)
+                                val changeHabitIntent =
+                                    Intent(this@MainActivity, ChangeHabitActivity::class.java)
                                 changeHabitIntent.putExtra("habitName", selectedHabit.name!!)
                                 startActivity(changeHabitIntent)
                             })
 
                         selectActionDialog.setNegativeButton(R.string.select_show_in_calendar,
                             DialogInterface.OnClickListener { _, _ ->
-                            val habitCalendarIntent = Intent(this@MainActivity,CalenderActivity::class.java)
-                            habitCalendarIntent.putExtra("habitName", selectedHabit.name!!)
-                            startActivity(habitCalendarIntent)
-                        })
+                                val habitCalendarIntent =
+                                    Intent(this@MainActivity, CalenderActivity::class.java)
+                                habitCalendarIntent.putExtra("habitName", selectedHabit.name!!)
+                                startActivity(habitCalendarIntent)
+                            })
 
                         val alert = selectActionDialog.create()
                         alert.show()

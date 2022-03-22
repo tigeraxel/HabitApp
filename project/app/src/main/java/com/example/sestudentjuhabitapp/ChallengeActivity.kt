@@ -60,12 +60,12 @@ class ChallengeActivity : AppCompatActivity() {
                         } else {
                             var tempErrorArray = ArrayList<String>()
                             tempErrorArray.add("Habit doesnt exist")
-                            validation.showValidationErrors(tempErrorArray,this)
+                            validation.showValidationErrors(tempErrorArray, this)
                         }
 
                     }
             } else {
-                validation.showValidationErrors(errors,this)
+                validation.showValidationErrors(errors, this)
             }
         }
     }

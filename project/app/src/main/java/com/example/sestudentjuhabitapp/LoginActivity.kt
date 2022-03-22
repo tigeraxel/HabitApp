@@ -32,11 +32,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
 
 
+    lateinit var loginEmail: EditText
+    lateinit var loginPassword: EditText
 
-    lateinit var loginEmail : EditText
-    lateinit var loginPassword : EditText
-
-    companion object{
+    companion object {
         private const val RC_SIGN_IN = 420;
     }
 
@@ -49,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
         val btnCreateAccount = findViewById<Button>(R.id.createAccountButton)
         loginEmail = findViewById(R.id.loginEmailEditText)
         loginPassword = findViewById(R.id.loginPasswordEditText)
-        val btnGoogleSignIn = findViewById<com.google.android.gms.common.SignInButton>(R.id.btnGoogleSignIn)
+        val btnGoogleSignIn =
+            findViewById<com.google.android.gms.common.SignInButton>(R.id.btnGoogleSignIn)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
 
@@ -105,12 +105,10 @@ class LoginActivity : AppCompatActivity() {
 
                         // ...
                     }
-            }
-            else{
-                validation.showValidationErrors(errors,this)
+            } else {
+                validation.showValidationErrors(errors, this)
             }
         }
-
 
 
     }
@@ -132,7 +130,7 @@ class LoginActivity : AppCompatActivity() {
 
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val exception = task.exception
-            if(task.isSuccessful) {
+            if (task.isSuccessful) {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
@@ -142,9 +140,8 @@ class LoginActivity : AppCompatActivity() {
                     // Google Sign In failed, update UI appropriately
                     Log.w("LoginActivity", "Google sign in failed", e)
                 }
-            }
-            else{
-                Log.w("LoginActivity", exception.toString() )
+            } else {
+                Log.w("LoginActivity", exception.toString())
             }
         }
     }
@@ -168,7 +165,11 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
-                    Toast.makeText(this, "Google Sign in Failed, try again later", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Google Sign in Failed, try again later",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -186,7 +187,6 @@ class LoginActivity : AppCompatActivity() {
 
         return
     }
-
 
 
     fun returnValidationErrors(): ArrayList<String> {

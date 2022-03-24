@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
         val btnCreateHabitActivity = findViewById<Button>(R.id.btnCreateHabitActivity)
         val btnChallengeActivity = findViewById<Button>(R.id.btnChallengeActivity)
-        val btnCalenderActivity = findViewById<Button>(R.id.btnCalendarActivity)
         val btnSettingsActivity = findViewById<ImageButton>(R.id.btnSettingsActivity)
 
         //Starts NewHabitActivity when clicked
@@ -70,12 +69,6 @@ class MainActivity : AppCompatActivity() {
         //Starts ChallengeActivity when clicked
         btnChallengeActivity.setOnClickListener {
             val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-
-        //Starts CalendarActivity when clicked
-        btnCalenderActivity.setOnClickListener {
-            val intent = Intent(this, CalenderActivity::class.java)
             startActivity(intent)
         }
 
@@ -252,13 +245,11 @@ class MainActivity : AppCompatActivity() {
 }
 fun displayHabitNotification(){
 
-    Resources.getSystem().getString(R.string.notificationContentTitle)
     notificationBuilder
         .setSmallIcon(R.drawable.ic_launcher_background)
         .setContentTitle(Resources.getSystem().getString(R.string.notificationContentTitle)) // The title that is displayed to the user.
         .setContentText(Resources.getSystem().getString(R.string.notificationContentText))
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-    val notificationId =
     notificationsManager.notify(1234, notificationBuilder.build())
 }

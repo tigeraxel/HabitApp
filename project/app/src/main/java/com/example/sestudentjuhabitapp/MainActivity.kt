@@ -1,14 +1,25 @@
 package com.example.sestudentjuhabitapp
 
+import android.Manifest.permission.SCHEDULE_EXACT_ALARM
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +28,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.util.jar.Manifest
+
+const val CHANNEL_ID = "HabitAlarm"
+lateinit var notificationsManager : NotificationManager
+lateinit var notificationBuilder : NotificationCompat.Builder
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +49,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         listView = findViewById(R.id.listView)
+
+        // Set a context for the notificationsBuilder, used for displaying a notification if the user sets an alarm.
+        notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
+
+        // Create the mandatory (for API > 25) notification channel:
+        createNotificationChannels()
 
         val btnCreateHabitActivity = findViewById<Button>(R.id.btnCreateHabitActivity)
         val btnChallengeActivity = findViewById<Button>(R.id.btnChallengeActivity)
@@ -128,7 +150,6 @@ class MainActivity : AppCompatActivity() {
                                     habit.deleteChallenge(reqHabit.name!!)
                                     dialog.cancel()
                                 })
-
                         // create dialog box
                         val alert = dialogBuilder.create()
                         // set title for alert dialog box
@@ -139,11 +160,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-
         habitsRef.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) { }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -179,22 +197,68 @@ class MainActivity : AppCompatActivity() {
 
                         val alert = selectActionDialog.create()
                         alert.show()
-
-                        //changeHabitIntent(selectedHabit.name!!)
-
-                        // The item that was clicked
-                        // val intent = Intent(this, BookDetailActivity::class.java)
-                        // startActivity(intent)
                     }
                 }
             }
-
         })
     }
+    private fun createNotificationChannels(){
 
-    fun changeHabitIntent(habitName: String) {
-        var intent = Intent(this, ChangeHabitActivity::class.java)
-        intent.putExtra("habitName", habitName)
-        startActivity(intent)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            val notificationName = "test"//R.string.notificationChannelName
+            val notificationDescriptionText = "this is a test"//R.string.notificationDescription
+            val notificationImportance = NotificationManager.IMPORTANCE_DEFAULT
+            val notificationChannel = NotificationChannel(CHANNEL_ID, notificationName, notificationImportance).apply {
+                description = notificationDescriptionText
+            }
+
+            notificationsManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationsManager.createNotificationChannel(notificationChannel)
+        }
     }
+    /*
+    private fun requestUserPermission(){
+        when{
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.SCHEDULE_EXACT_ALARM
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                // Permission is granted
+            }
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                android.Manifest.permission.SCHEDULE_EXACT_ALARM
+            ) -> {
+                    // Show more info.
+                val userPermissionRequestDialog = AlertDialog.Builder(this)
+                userPermissionRequestDialog.setMessage(R.string.requestUserPermissionText)
+                userPermissionRequestDialog.setCancelable(false)
+                userPermissionRequestDialog.setPositiveButton(R.string.ok,
+                    DialogInterface.OnClickListener { _, _ ->
+                        requestPermission
+                    })
+
+                val alert = userPermissionRequestDialog.create()
+                alert.show()
+                }
+            else -> {
+                // First time asking for permission
+            }
+        }
+    }*/
+
+}
+fun displayHabitNotification(){
+
+    Resources.getSystem().getString(R.string.notificationContentTitle)
+    notificationBuilder
+        .setSmallIcon(R.drawable.ic_launcher_background)
+        .setContentTitle(Resources.getSystem().getString(R.string.notificationContentTitle)) // The title that is displayed to the user.
+        .setContentText(Resources.getSystem().getString(R.string.notificationContentText))
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+    val notificationId =
+    notificationsManager.notify(1234, notificationBuilder.build())
 }

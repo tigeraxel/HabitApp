@@ -98,4 +98,7 @@
     <string name="the_title_of_the_habit_should_min_be">The title of the habit should min be</string>
     <string name="the_password_should_be_max">The password should be max</string>
     <string name="the_password_should_be_min">The password should be min</string>
+
+    <string name="notificationContentTitle">HabitApp</string>
+    <string name="notificationContentText">Do not forget to do your new habits today</string>
 </resources>

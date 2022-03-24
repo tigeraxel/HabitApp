@@ -35,7 +35,7 @@ class ChangeHabitActivity : AppCompatActivity() {
             confirmDeletePopup.setCancelable(false)
                 .setMessage(R.string.change_delete_habit_popup_detail_text)
                 .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { _, _ ->
-                    habit.deleteHabit(habitName!!)
+                    habit.deleteHabit(habitName)
                     finish()
                 })
                 .setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialog, _ ->
@@ -55,6 +55,4 @@ class ChangeHabitActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }

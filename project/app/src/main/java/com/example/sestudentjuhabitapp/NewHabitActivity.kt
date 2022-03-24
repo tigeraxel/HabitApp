@@ -28,13 +28,7 @@ class NewHabitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_habit)
 
-
-        //val editHabitNameEditText = findViewById<EditText>(R.id.fragment_habit_name_edittext)
-        //val habitName = editHabitNameEditText!!.editableText // Fetch the text from the window.
-        //if(habitName.isEmpty() || habitName.length > MAX_INPUT_SIZE)
-        //displayInputErrorMessage()
         val fm: FragmentManager = supportFragmentManager
-//if you added fragment via layout xml
 
         val createHabitButton = findViewById<Button>(R.id.create_create_habit_button)
         createHabitButton.setOnClickListener {
@@ -50,15 +44,5 @@ class NewHabitActivity : AppCompatActivity() {
             }
         }
     }
-
-
-//if you added fragment via layout xml
-
-fun setAlarm(time : String){
-
-
-}
-
-
 }
 

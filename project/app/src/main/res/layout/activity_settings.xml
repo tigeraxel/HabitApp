@@ -7,19 +7,6 @@
     tools:context=".SettingsActivity">
 
     <TextView
-        android:id="@+id/settingsLightModesText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:fontFamily="@font/rowdies"
-        android:text="@string/lightmode_darkmode"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnChangeUserInfo" />
-
-    <TextView
         android:id="@+id/settingsTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,21 +99,10 @@
         android:fontFamily="@font/rowdies_bold"
         android:text="@string/change"
         android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInRepeatPasswordInput" />
-
-    <Switch
-        android:id="@+id/switchLightModes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="50dp"
-        android:showText="true"
-        android:textOff="@string/settings_dark_mode_switch_text"
-        android:textOn="@string/settings_light_mode_switch_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsLightModesText" />
 
     <Button
         android:id="@+id/btnLogout"
@@ -136,7 +112,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchLightModes" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChangeUserInfo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

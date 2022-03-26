@@ -116,7 +116,7 @@ class EditHabitFragment : Fragment() {
 
         val userAlarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmReceiverIntent = Intent(context, UserAlarmReceiver::class.java)
-        alarmReceiverIntent.action = "habit"
+        alarmReceiverIntent.action = placeholderAlarmHabitName
         val setAlarmIntent = PendingIntent.getBroadcast(context, 0, alarmReceiverIntent, 0)
 
         toggleNotificationsSwitch.setOnCheckedChangeListener { _, isChecked ->

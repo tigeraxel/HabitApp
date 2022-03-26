@@ -31,6 +31,8 @@ import com.google.firebase.ktx.Firebase
 import java.util.jar.Manifest
 
 const val CHANNEL_ID = "HabitAlarm"
+
+
 lateinit var notificationsManager : NotificationManager
 lateinit var notificationBuilder : NotificationCompat.Builder
 
@@ -211,44 +213,13 @@ class MainActivity : AppCompatActivity() {
             notificationsManager.createNotificationChannel(notificationChannel)
         }
     }
-    /*
-    private fun requestUserPermission(){
-        when{
-            ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.SCHEDULE_EXACT_ALARM
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // Permission is granted
-            }
-            ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                android.Manifest.permission.SCHEDULE_EXACT_ALARM
-            ) -> {
-                    // Show more info.
-                val userPermissionRequestDialog = AlertDialog.Builder(this)
-                userPermissionRequestDialog.setMessage(R.string.requestUserPermissionText)
-                userPermissionRequestDialog.setCancelable(false)
-                userPermissionRequestDialog.setPositiveButton(R.string.ok,
-                    DialogInterface.OnClickListener { _, _ ->
-                        requestPermission
-                    })
-
-                val alert = userPermissionRequestDialog.create()
-                alert.show()
-                }
-            else -> {
-                // First time asking for permission
-            }
-        }
-    }*/
-
 }
-fun displayHabitNotification(){
+fun displayHabitNotification(contentTitle : String, contentText : String){
 
     notificationBuilder
         .setSmallIcon(R.drawable.ic_launcher_background)
-        .setContentTitle(Resources.getSystem().getString(R.string.notificationContentTitle)) // The title that is displayed to the user.
-        .setContentText(Resources.getSystem().getString(R.string.notificationContentText))
+        .setContentTitle(contentTitle) // The title that is displayed to the user.
+        .setContentText(contentText)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
     notificationsManager.notify(1234, notificationBuilder.build())

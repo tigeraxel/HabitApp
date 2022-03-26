@@ -1,6 +1,5 @@
 package com.example.sestudentjuhabitapp
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,9 +7,6 @@ import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import android.widget.Toast
-
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -20,13 +16,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 
+const val authenticationFailure = "Authentication failed."
+const val googleSignInSuccess = "Google Sign in Success"
+const val googleSignInFailure = "Google Sign in Failed, try again later"
 
 class LoginActivity : AppCompatActivity() {
-    val validation = ValidationClass()
-    val maxEmailLength = validation.maxEmailLength
-    val minEmailLength = validation.minEmailLength
-    val minPasswordLength = validation.minPasswordLength
-    val maxPasswordLength = validation.maxPasswordLength
+    private val validation = ValidationClass()
+    private val maxEmailLength = validation.maxEmailLength
+    private val minEmailLength = validation.minEmailLength
+    private val minPasswordLength = validation.minPasswordLength
+    private val maxPasswordLength = validation.maxPasswordLength
 
     private var mAuth: FirebaseAuth? = null
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -52,10 +51,9 @@ class LoginActivity : AppCompatActivity() {
             findViewById<com.google.android.gms.common.SignInButton>(R.id.btnGoogleSignIn)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
-
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.default_web_client_id)) // Todo: What is this?
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -80,13 +78,12 @@ class LoginActivity : AppCompatActivity() {
                     ) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success")
                             progressBar.visibility = View.INVISIBLE
 
                             val userID = mAuth!!.currentUser!!.providerId
                             startActivity(
                                 Intent(this, MainActivity::class.java).putExtra(
-                                    "userID",
+                                    databaseUserID,
                                     userID
                                 )
 
@@ -95,22 +92,17 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             progressBar.visibility = View.INVISIBLE
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.exception)
                             Toast.makeText(
-                                this@LoginActivity, "Authentication failed.",
+                                this@LoginActivity, authenticationFailure,
                                 Toast.LENGTH_SHORT
                             ).show()
                             updateUI(null)
                         }
-
-                        // ...
                     }
             } else {
                 validation.showValidationErrors(errors, this)
             }
         }
-
-
     }
 
     private fun signIn() {
@@ -121,11 +113,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        Log.d("LoginActivityTest", requestCode.toString())
-        Log.d("LoginActivityTest", resultCode.toString())
-        Log.d("LoginActivityTest", data.toString())
-
         if (requestCode == RC_SIGN_IN) {
 
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -134,14 +121,10 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
-                    Log.d("LoginActivity", "firebaseAuthWithGoogle:" + account.id)
                     firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
-                    Log.w("LoginActivity", "Google sign in failed", e)
                 }
-            } else {
-                Log.w("LoginActivity", exception.toString())
             }
         }
     }
@@ -152,22 +135,20 @@ class LoginActivity : AppCompatActivity() {
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("LoginActivity", "signInWithCredential:success")
-                    Toast.makeText(this, "Google Sign in Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, googleSignInSuccess, Toast.LENGTH_SHORT).show()
                     val userID = mAuth!!.currentUser!!.providerId
                     startActivity(
                         Intent(this, MainActivity::class.java).putExtra(
-                            "userID",
+                            databaseUserID,
                             userID
                         )
                     )
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
                     Toast.makeText(
                         this,
-                        "Google Sign in Failed, try again later",
+                        googleSignInFailure,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -179,8 +160,6 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth!!.getCurrentUser();
         updateUI(currentUser)
-
-
     }
 
     fun updateUI(user: FirebaseUser?) {

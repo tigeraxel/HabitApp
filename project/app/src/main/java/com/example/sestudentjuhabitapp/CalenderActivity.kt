@@ -1,28 +1,9 @@
 package com.example.sestudentjuhabitapp
 
-/*
-To set which days are selected or not, call the constructor: "CalendarDaysFragment.newInstance(monday, tuesday, wednesday, thursday
-                                                                                               friday, saturday, sunday)
-Where the days fetched from the database.
- */
-
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.util.Log
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.CalendarView
-import android.widget.ListView
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -48,24 +29,24 @@ class CalenderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calender)
 
-        val habitName = intent.getStringExtra("habitName") // Find which habit was selected.
+        val habitName = intent.getStringExtra(habitNamePlaceholder) // Find which habit was selected.
 
         var currentHabit = habit.getHabit(habitName!!) // Check which days are selected:
             .addOnSuccessListener {
                 val currentHabit = it.getValue<HabitData>()!!
-                if (currentHabit.days?.get("monday") == true)
+                if (currentHabit.days?.get(monday) == true)
                     mondayState = true
-                if (currentHabit.days?.get("tuesday") == true)
+                if (currentHabit.days?.get(tuesday) == true)
                     tuesdayState = true
-                if (currentHabit.days?.get("wednesday") == true)
+                if (currentHabit.days?.get(wednesday) == true)
                     wednesdayState = true
-                if (currentHabit.days?.get("thursday") == true)
+                if (currentHabit.days?.get(thursday) == true)
                     thursdayState = true
-                if (currentHabit.days?.get("friday") == true)
+                if (currentHabit.days?.get(friday) == true)
                     fridayState = true
-                if (currentHabit.days?.get("saturday") == true)
+                if (currentHabit.days?.get(saturday) == true)
                     saturdayState = true
-                if (currentHabit.days?.get("sunday") == true)
+                if (currentHabit.days?.get(sunday) == true)
                     sundayState = true
 
                 val daysFragment =

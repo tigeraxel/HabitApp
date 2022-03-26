@@ -1,6 +1,5 @@
 package com.example.sestudentjuhabitapp
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -10,26 +9,22 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
+
 class ChallengeActivity : AppCompatActivity() {
-    val maxHabitTitleLength = 24
-    val minHabitTitleLength = 2
-    val maxEmailLength = 34
-    val minEmailLength = 6
-
-    val habit = HabitClass()
-    val validation = ValidationClass()
-
-
+    private val validation = ValidationClass()
+    private val maxHabitTitleLength = validation.maxHabitTitleLength
+    private val minHabitTitleLength = validation.minHabitTitleLength
+    private val maxEmailLength = validation.maxEmailLength
+    private val minEmailLength = validation.minEmailLength
+    private val habit = HabitClass()
     private val database = Firebase.database
     private var currentUserEmail = Firebase.auth.currentUser!!.email.toString().replace(".", "")
 
     lateinit var submitButton: Button
     lateinit var habitName: EditText
     lateinit var userChallenged: EditText
-
     lateinit var habitNameText: String
     lateinit var userChallengedText: String
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +34,12 @@ class ChallengeActivity : AppCompatActivity() {
         habitName = findViewById(R.id.habitNameEditText)
         userChallenged = findViewById(R.id.challengedUser)
 
-
         submitButton.setOnClickListener {
             userChallengedText = userChallenged.text.toString().replace(".", "")
             habitNameText = habitName.text.toString()
             val errors = returnValidationErrors()
             if (errors.isEmpty()) {
-                database.getReference("users").child(currentUserEmail).child("Habits")
+                database.getReference(databaseUsersPath).child(currentUserEmail).child(databaseHabitsPathString)
                     .child(habitNameText).get().addOnSuccessListener {
                         val reqHabit = it.getValue<HabitData>()
                         if (reqHabit != null) {
@@ -59,7 +53,7 @@ class ChallengeActivity : AppCompatActivity() {
                             finish()
                         } else {
                             var tempErrorArray = ArrayList<String>()
-                            tempErrorArray.add("Habit doesnt exist")
+                            tempErrorArray.add(invalidHabitErrorMessage)
                             validation.showValidationErrors(tempErrorArray, this)
                         }
 
@@ -98,9 +92,5 @@ class ChallengeActivity : AppCompatActivity() {
             )
 
         return errorsArray
-
     }
 }
-
-
-

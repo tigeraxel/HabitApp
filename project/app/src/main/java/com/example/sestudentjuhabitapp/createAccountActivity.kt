@@ -10,12 +10,15 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
+const val userCreationFailure = "createUserWithEmail:failure"
+const val googleAuthenticationFailure = "Google Authentication denied the email address."
+
 class createAccountActivity : AppCompatActivity() {
-    val validation = ValidationClass()
-    val maxEmailLength = validation.maxEmailLength
-    val minEmailLength = validation.minEmailLength
-    val minPasswordLength = validation.minPasswordLength
-    val maxPasswordLength = validation.maxPasswordLength
+    private val validation = ValidationClass()
+    private val maxEmailLength = validation.maxEmailLength
+    private val minEmailLength = validation.minEmailLength
+    private val minPasswordLength = validation.minPasswordLength
+    private val maxPasswordLength = validation.maxPasswordLength
 
     private var mAuth: FirebaseAuth? = null
 
@@ -47,7 +50,7 @@ class createAccountActivity : AppCompatActivity() {
                         val userID = mAuth!!.currentUser!!.providerId
                         startActivity(
                             Intent(this, MainActivity::class.java).putExtra(
-                                "userID",
+                                databaseUserID,
                                 userID
                             )
                         )
@@ -55,10 +58,9 @@ class createAccountActivity : AppCompatActivity() {
 
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(
                             this@createAccountActivity,
-                            "Google Authentication denied the email adress.",
+                            googleAuthenticationFailure,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -69,7 +71,7 @@ class createAccountActivity : AppCompatActivity() {
         }
     }
 
-    fun returnValidationErrors(): ArrayList<String> {
+    private fun returnValidationErrors(): ArrayList<String> {
         var errorsArray = ArrayList<String>()
         if (createEmail.text.length > maxEmailLength)
             errorsArray.add(
@@ -97,7 +99,6 @@ class createAccountActivity : AppCompatActivity() {
                     R.string.characters
                 ) + "\n"
             )
-
         return errorsArray
     }
 }

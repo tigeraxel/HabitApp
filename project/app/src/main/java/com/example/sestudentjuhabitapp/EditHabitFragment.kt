@@ -3,29 +3,24 @@ package com.example.sestudentjuhabitapp
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.ktx.getValue
 import java.util.*
 
-
 class EditHabitFragment : Fragment() {
-    val validation = ValidationClass()
-    val maxHabitTitleLength = validation.maxHabitTitleLength
-    val minHabitTitleLength = validation.minHabitTitleLength
+    private val validation = ValidationClass()
+    private val maxHabitTitleLength = validation.maxHabitTitleLength
+    private val minHabitTitleLength = validation.minHabitTitleLength
 
-    var calendar = Calendar.getInstance()
+    private var calendar = Calendar.getInstance()
 
     val habit = HabitClass()
     lateinit var titleOfHabit: EditText
@@ -52,7 +47,7 @@ class EditHabitFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
-    ) { // Needs to find and fill any required views.
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         titleOfHabit =
@@ -73,25 +68,24 @@ class EditHabitFragment : Fragment() {
                 .addOnSuccessListener {
                     val currentHabit = it.getValue<HabitData>()!!
                     titleOfHabit.setText(currentHabit.name)
-                    if(currentHabit.days?.get("monday") == true)
+                    if(currentHabit.days?.get(monday) == true)
                         selectMondayBtn.isChecked = true
-                    if(currentHabit.days?.get("tuesday") == true)
+                    if(currentHabit.days?.get(tuesday) == true)
                         selectTuesdayBtn.isChecked = true
-                    if(currentHabit.days?.get("wednesday") == true)
+                    if(currentHabit.days?.get(wednesday) == true)
                         selectWednesdayBtn.isChecked = true
-                    if(currentHabit.days?.get("thursday") == true)
+                    if(currentHabit.days?.get(thursday) == true)
                         selectThursdayBtn.isChecked = true
-                    if(currentHabit.days?.get("friday") == true)
+                    if(currentHabit.days?.get(friday) == true)
                         selectFridayBtn.isChecked = true
-                    if(currentHabit.days?.get("saturday") == true)
+                    if(currentHabit.days?.get(saturday) == true)
                         selectSaturdayBtn.isChecked = true
-                    if(currentHabit.days?.get("sunday") == true)
+                    if(currentHabit.days?.get(sunday) == true)
                         selectSundayBtn.isChecked = true
                     userTime = currentHabit.time!!
                     if(currentHabit.pushNotification == true)
                         pushNotificationBool.isChecked = true
                 }
-            Log.d("EditHabitFragment", currentHabit.toString())
         }
 
         selectTimeButton.setOnClickListener {
@@ -149,12 +143,12 @@ class EditHabitFragment : Fragment() {
                 }
             }
             else{ // Cancel the alarm.
-                userAlarmManager.cancel(setAlarmIntent)
+                userAlarmManager.cancel(setAlarmIntent) // Currently cancels ALL alarms.
             }
         }
     }
 
-    public fun insertToDB() {
+    fun insertToDB() {
         var titleOfHabitText = titleOfHabit.text.toString()
 
         var days = returnDays()
@@ -162,16 +156,16 @@ class EditHabitFragment : Fragment() {
         habit.insertHabit(titleOfHabitText, days, pushNotificationBool.isChecked, userTime, "")
     }
 
-    public fun saveHabitName(name : String){
+    fun saveHabitName(name : String){
         habitName = name
     }
 
-    public fun updateHabit(){
+    fun updateHabit(){
         habit.deleteHabit(habitName!!)
         insertToDB()
     }
 
-    public fun returnValidationErrors() : ArrayList<String>{
+    fun returnValidationErrors() : ArrayList<String>{
         var errorsArray = ArrayList<String>()
         if(titleOfHabit.text.length > maxHabitTitleLength)
             errorsArray.add(getString(R.string.title_too_long) + " " + maxHabitTitleLength.toString() + " " + getString(
@@ -195,19 +189,19 @@ class EditHabitFragment : Fragment() {
     fun returnDays() : HashMap<String, Boolean>{
         var days = HashMap<String, Boolean>()
         if (selectMondayBtn!!.isChecked())
-            days.put("monday", true)
+            days.put(monday, true)
         if (selectTuesdayBtn!!.isChecked())
-            days.put("tuesday", true)
+            days.put(tuesday, true)
         if (selectWednesdayBtn!!.isChecked())
-            days.put("wednesday", true)
+            days.put(wednesday, true)
         if (selectThursdayBtn!!.isChecked())
-            days.put("thursday", true)
+            days.put(thursday, true)
         if (selectFridayBtn!!.isChecked())
-            days.put("friday", true)
+            days.put(friday, true)
         if (selectSaturdayBtn!!.isChecked())
-            days.put("saturday", true)
+            days.put(saturday, true)
         if (selectSundayBtn!!.isChecked())
-            days.put("sunday", true)
+            days.put(sunday, true)
 
         return days
     }

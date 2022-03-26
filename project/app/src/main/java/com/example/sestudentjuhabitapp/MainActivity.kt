@@ -1,25 +1,18 @@
 package com.example.sestudentjuhabitapp
 
-import android.Manifest.permission.SCHEDULE_EXACT_ALARM
 import android.app.AlertDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,13 +21,14 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import java.util.jar.Manifest
 
-const val CHANNEL_ID = "HabitAlarm"
-
+const val habitNamePlaceholder = "habitName"
+const val alarmChannelId = "HabitAlarm"
+const val notificationNamePlaceholder = "HabitApp"
+const val notificationDescriptionPlaceholder = "Description" // The description text for the notification, should be name of relevant habit.
+const val notificationIdPlaceholder = 13 // Should be a unique id for each habit that sets an alarm.
 
 lateinit var notificationsManager : NotificationManager
-lateinit var notificationBuilder : NotificationCompat.Builder
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,14 +40,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var habitList: MutableList<HabitData>
     lateinit var listView: ListView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         listView = findViewById(R.id.listView)
-
-        // Set a context for the notificationsBuilder, used for displaying a notification if the user sets an alarm.
-        notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
 
         // Create the mandatory (for API > 25) notification channel:
         createNotificationChannels()
@@ -84,36 +74,35 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         habitList = mutableListOf()
-        habitsRef = database.getReference("users").child(email).child("Habits")
+        habitsRef = database.getReference(databaseUsersPath).child(email).child(databaseHabitsPathString)
 
-        database.getReference("users").child(email).child("HabitChallenges").get()
+        database.getReference(databaseUsersPath).child(email).child(databaseChallengesPathString).get()
             .addOnSuccessListener {
                 if (it.hasChildren()) {
                     for (snapshot in it.children) {
                         var reqHabit = snapshot.getValue<HabitData>()
-                        Log.i("habit", reqHabit.toString())
                         val dialogBuilder = AlertDialog.Builder(this)
                         var arrayOfDays = arrayListOf<String>()
-                        if (reqHabit!!.days!!["monday"] == true)
+                        if (reqHabit!!.days!![monday] == true)
                             arrayOfDays.add(getString(R.string.monday))
-                        if (reqHabit!!.days!!["tuesday"] == true)
+                        if (reqHabit!!.days!![tuesday] == true)
                             arrayOfDays.add(getString(R.string.tuesday))
-                        if (reqHabit!!.days!!["wednesday"] == true)
+                        if (reqHabit!!.days!![wednesday] == true)
                             arrayOfDays.add(getString(R.string.wednesday))
-                        if (reqHabit!!.days!!["thursday"] == true)
+                        if (reqHabit!!.days!![thursday] == true)
                             arrayOfDays.add(getString(R.string.thursday))
-                        if (reqHabit!!.days!!["friday"] == true)
+                        if (reqHabit!!.days!![friday] == true)
                             arrayOfDays.add(getString(R.string.friday))
-                        if (reqHabit!!.days!!["saturday"] == true)
+                        if (reqHabit!!.days!![saturday] == true)
                             arrayOfDays.add(getString(R.string.saturday))
-                        if (reqHabit!!.days!!["sunday"] == true)
+                        if (reqHabit!!.days!![sunday] == true)
                             arrayOfDays.add(getString(R.string.sunday))
-                        var Days = arrayOfDays.toString().replace("[", "")
-                        Days = Days.replace("]", "")
-                        var Notification = ""
+                        var days = arrayOfDays.toString().replace("[", "")
+                        days = days.replace("]", "")
+                        var notification = ""
                         if (reqHabit.pushNotification == true)
-                            Notification = getString(R.string.notifications_is_on)
-                        else Notification = getString(R.string.notifications_is_off)
+                            notification = getString(R.string.notifications_is_on)
+                        else notification = getString(R.string.notifications_is_off)
 
                         val haveChallengeYou = resources.getString(R.string.have_challenged_you);
                         val theNameOfTheChallengeIs =
@@ -125,9 +114,9 @@ class MainActivity : AppCompatActivity() {
                         dialogBuilder.setMessage(
                             "${reqHabit!!.challenger} " + haveChallengeYou + "\n" +
                                     theNameOfTheChallengeIs + " ${reqHabit!!.name}" + "\n" +
-                                    theChallengeIsDoneOn + " $Days" + "\n" +
+                                    theChallengeIsDoneOn + " $days" + "\n" +
                                     theTimeEverydayIs + " ${reqHabit!!.time}" + "\n" +
-                                    "$Notification"
+                                    "$notification"
                         )
                             // if the dialog is cancelable
                             .setCancelable(false)
@@ -166,7 +155,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     val adapter = habitAdapter(applicationContext, R.layout.habits, habitList)
                     listView.adapter = adapter
-                    listView.setOnItemClickListener { parent, view, position, id ->
+                    listView.setOnItemClickListener { _, _, position, _ ->
 
                         var selectedHabit = habitList[position]
 
@@ -178,7 +167,7 @@ class MainActivity : AppCompatActivity() {
                             DialogInterface.OnClickListener { _, _ ->
                                 val changeHabitIntent =
                                     Intent(this@MainActivity, ChangeHabitActivity::class.java)
-                                changeHabitIntent.putExtra("habitName", selectedHabit.name!!)
+                                changeHabitIntent.putExtra(habitNamePlaceholder, selectedHabit.name!!)
                                 startActivity(changeHabitIntent)
                             })
 
@@ -186,7 +175,7 @@ class MainActivity : AppCompatActivity() {
                             DialogInterface.OnClickListener { _, _ ->
                                 val habitCalendarIntent =
                                     Intent(this@MainActivity, CalenderActivity::class.java)
-                                habitCalendarIntent.putExtra("habitName", selectedHabit.name!!)
+                                habitCalendarIntent.putExtra(habitNamePlaceholder, selectedHabit.name!!)
                                 startActivity(habitCalendarIntent)
                             })
 
@@ -201,26 +190,27 @@ class MainActivity : AppCompatActivity() {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
-            val notificationName = "test"//R.string.notificationChannelName
-            val notificationDescriptionText = "this is a test"//R.string.notificationDescription
+            val notificationName = notificationNamePlaceholder
+            val notificationDescriptionText = notificationDescriptionPlaceholder
             val notificationImportance = NotificationManager.IMPORTANCE_DEFAULT
-            val notificationChannel = NotificationChannel(CHANNEL_ID, notificationName, notificationImportance).apply {
+            val notificationChannel = NotificationChannel(alarmChannelId, notificationName, notificationImportance).apply {
                 description = notificationDescriptionText
             }
-
             notificationsManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationsManager.createNotificationChannel(notificationChannel)
         }
     }
 }
-fun displayHabitNotification(contentTitle : String, contentText : String){
+fun displayHabitNotification(contentTitle : String, contentText : String, context : Context){
+
+    val notificationBuilder = NotificationCompat.Builder(context, alarmChannelId)
 
     notificationBuilder
         .setSmallIcon(R.drawable.ic_launcher_background)
         .setContentTitle(contentTitle) // The title that is displayed to the user.
         .setContentText(contentText)
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        .priority = NotificationCompat.PRIORITY_DEFAULT
 
-    notificationsManager.notify(1234, notificationBuilder.build())
+    notificationsManager.notify(notificationIdPlaceholder, notificationBuilder.build())
 }

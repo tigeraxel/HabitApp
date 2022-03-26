@@ -15,9 +15,7 @@ class SettingsActivity : AppCompatActivity() {
         val btnLogout = findViewById<Button>(R.id.btnLogout)
 
         //Change User Information with the database when clicked
-        btnChangeUserInfo.setOnClickListener {
-
-        }
+        btnChangeUserInfo.setOnClickListener { }
 
         //Logout the user, and start LoginActivity when clicked
         btnLogout.setOnClickListener {

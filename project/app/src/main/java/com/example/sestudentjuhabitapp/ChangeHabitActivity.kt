@@ -6,20 +6,18 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
-import android.content.Intent
 import java.util.ArrayList
-
 
 class ChangeHabitActivity : AppCompatActivity() {
     val habit = HabitClass()
-    val validation = ValidationClass()
+    private val validation = ValidationClass()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_habit)
 
         val intent = intent
-        val habitName = intent.getStringExtra("habitName")
+        val habitName = intent.getStringExtra(habitNamePlaceholder)
 
         val fm: FragmentManager = supportFragmentManager
         val fragment: EditHabitFragment =

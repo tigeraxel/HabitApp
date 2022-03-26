@@ -7,6 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 
+const val monday = "monday"
+const val tuesday = "tuesday"
+const val wednesday = "wednesday"
+const val thursday = "thursday"
+const val friday = "friday"
+const val saturday = "saturday"
+const val sunday = "sunday"
+
 class CalendarDaysFragment : Fragment() {
 
     private var mondayState = false
@@ -20,13 +28,13 @@ class CalendarDaysFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mondayState = requireArguments().getBoolean("monday")
-        tuesdayState = requireArguments().getBoolean("tuesday")
-        wednesdayState = requireArguments().getBoolean("wednesday")
-        thursdayState = requireArguments().getBoolean("thursday")
-        fridayState = requireArguments().getBoolean("friday")
-        saturdayState = requireArguments().getBoolean("saturday")
-        sundayState = requireArguments().getBoolean("sunday")
+        mondayState = requireArguments().getBoolean(monday)
+        tuesdayState = requireArguments().getBoolean(tuesday)
+        wednesdayState = requireArguments().getBoolean(wednesday)
+        thursdayState = requireArguments().getBoolean(thursday)
+        fridayState = requireArguments().getBoolean(friday)
+        saturdayState = requireArguments().getBoolean(saturday)
+        sundayState = requireArguments().getBoolean(sunday)
     }
 
     override fun onCreateView(
@@ -60,7 +68,6 @@ class CalendarDaysFragment : Fragment() {
         if (!saturdayState) {
             val saturdayBtn = view.findViewById<Button>(R.id.calendar_fragment_saturday_button)
                 .setBackgroundColor(R.color.HabitColorSecondary.toInt())
-            //saturdayBtn.visibility = View.INVISIBLE // Set to invisible
         }
         if (!sundayState) {
             val sundayBtn = view.findViewById<Button>(R.id.calendar_fragment_sunday_button)
@@ -79,13 +86,13 @@ class CalendarDaysFragment : Fragment() {
             sun: Boolean
         ) = CalendarDaysFragment().apply {
             arguments = Bundle().apply { // Create a Bundle
-                putBoolean("monday", mon) // Put stuff into the Bundle.
-                putBoolean("tuesday", tues)
-                putBoolean("wednesday", wed)
-                putBoolean("thursday", thur)
-                putBoolean("friday", fri)
-                putBoolean("saturday", sat)
-                putBoolean("sunday", sun)
+                putBoolean(monday, mon) // Put stuff into the Bundle.
+                putBoolean(tuesday, tues)
+                putBoolean(wednesday, wed)
+                putBoolean(thursday, thur)
+                putBoolean(friday, fri)
+                putBoolean(saturday, sat)
+                putBoolean(sunday, sun)
             }
         }
     }

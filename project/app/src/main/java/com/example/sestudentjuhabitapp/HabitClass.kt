@@ -7,7 +7,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
-
 class HabitClass {
 
     private var mAuth = FirebaseAuth.getInstance();
@@ -15,14 +14,10 @@ class HabitClass {
     private var email = mAuth.currentUser?.email.toString().replace(".", "")
     private val database = Firebase.database
 
-
     fun getHabit(name: String): Task<DataSnapshot> {
         var currentHabit = HabitData()
-        return database.getReference("users").child(email).child("Habits").child(name).get()
-
-
+        return database.getReference(databaseUsersPath).child(email).child(databaseHabitsPathString).child(name).get()
     }
-
 
     fun insertHabit(
         name: String,
@@ -31,7 +26,7 @@ class HabitClass {
         time: String,
         challenger: String
     ) {
-        val habitsReference = database.getReference("users").child(email).child("Habits")
+        val habitsReference = database.getReference(databaseUsersPath).child(email).child(databaseHabitsPathString)
         var newHabit = HabitData(name, days, pushNotification, time, challenger)
         habitsReference.child(name).setValue(newHabit)
 
@@ -47,24 +42,24 @@ class HabitClass {
 
         var emailChallengerFixed = emailChallenger.replace(".", "")
         val userReference =
-            database.getReference("users").child(emailChallengerFixed).child("HabitChallenges")
+            database.getReference(databaseUsersPath).child(emailChallengerFixed).child(databaseChallengesPathString)
         var newHabit = HabitData(name, days, pushNotification, time, email)
         userReference.child(name).setValue(newHabit)
 
     }
 
     fun deleteHabit(nameOfHabit: String) {
-        database.getReference("users").child(email).child("Habits").child(nameOfHabit)
+        database.getReference(databaseUsersPath).child(email).child(databaseHabitsPathString).child(nameOfHabit)
             .removeValue()
     }
 
     fun deleteChallenge(nameOfHabit: String) {
-        database.getReference("users").child(email).child("HabitChallenges").child(nameOfHabit)
+        database.getReference(databaseUsersPath).child(email).child(databaseChallengesPathString).child(nameOfHabit)
             .removeValue()
     }
 
     fun acceptChallenge(nameOfHabit: String) {
-        database.getReference("users").child(email).child("HabitChallenges")
+        database.getReference(databaseUsersPath).child(email).child(databaseChallengesPathString)
             .child(nameOfHabit).get().addOnSuccessListener {
                 val reqHabit = it.getValue<HabitData>()
                 insertHabit(
@@ -74,7 +69,7 @@ class HabitClass {
                     reqHabit!!.time!!,
                     reqHabit!!.challenger!!
                 )
-                database.getReference("users").child(email).child("HabitChallenges")
+                database.getReference(databaseUsersPath).child(email).child(databaseChallengesPathString)
                     .child(reqHabit.name!!).removeValue()
             }
     }

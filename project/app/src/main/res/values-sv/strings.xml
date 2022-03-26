@@ -87,4 +87,9 @@
     <string name="select_show_in_calendar">Visa i kalender</string>
     <string name="notificationContentTitle">HabbitApp</string>
     <string name="notificationContentText">Glöm inte att göra dina nya vanor idag</string>
+    <string name="settings_change_username_textview_text">Byt Användarnamn:</string>
+    <string name="settings_change_username_edittext_hint_text">Nytt Anändarnamn</string>
+    <string name="settings_change_password_textview_text">Byt Lösenord:</string>
+    <string name="settings_change_password_edittext_hint_text">Nytt Lösenord</string>
+    <string name="settings_repeat_password_edittext_hint_text">Upprepa Lösenord</string>
 </resources>
